@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Revenue Monitoring Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Hospital Monitor</h2>
+                <p>Revenue Monitoring</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="/">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/data-entry">Nhập viện phí</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <p><strong>Administrator</strong></p>
+                    <p>Localhost Demo</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Hospital Revenue Monitoring Dashboard</h1>
+                    <p id="latestDateText">Ngày dữ liệu gần nhất: --</p>
+                </div>
+
+                <div class="header-actions filter-actions">
+                    <select id="datePreset" class="filter-select">
+                        <option value="today">Hôm nay</option>
+                        <option value="yesterday">Hôm qua</option>
+                        <option value="7days" selected>7 ngày</option>
+                        <option value="30days">30 ngày</option>
+                        <option value="custom">Tùy chỉnh</option>
+                        <option value="all">Tất cả</option>
+                    </select>
+            
+                    <input type="date" id="startDate" class="filter-date" disabled>
+                    <input type="date" id="endDate" class="filter-date" disabled>
+            
+                    <button onclick="loadDashboard()" class="primary-btn">Áp dụng</button>
+                </div>
+            </header>
+
+            <section class="kpi-grid">
+                <div class="kpi-card">
+                    <h4>Tổng doanh thu</h4>
+                    <div id="kpiTotalRevenue" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Tổng doanh thu toàn hệ thống</div>
+                </div>
+
+                <div class="kpi-card">
+                    <h4>Doanh thu ngày gần nhất</h4>
+                    <div id="kpiTodayRevenue" class="kpi-value">--</div>
+                    <div id="kpiChangeVsYesterday" class="kpi-subtext">So với hôm trước: --</div>
+                </div>
+
+                <div class="kpi-card">
+                    <h4>Doanh thu tháng hiện tại</h4>
+                    <div id="kpiMonthRevenue" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Theo tháng của ngày dữ liệu gần nhất</div>
+                </div>
+
+                <div class="kpi-card">
+                    <h4>Trung bình 7 ngày</h4>
+                    <div id="kpiAvg7dRevenue" class="kpi-value">--</div>
+                    <div id="kpiChangeVs7d" class="kpi-subtext">So với TB 7 ngày: --</div>
+                </div>
+
+                <div class="kpi-card">
+                    <h4>Trạng thái hệ thống</h4>
+                    <div id="kpiSystemStatus" class="kpi-value status-normal">--</div>
+                    <div class="kpi-subtext">Dựa trên biến động doanh thu</div>
+                </div>
+
+                <div class="kpi-card">
+                    <h4>Số cảnh báo</h4>
+                    <div id="kpiAlertCount" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Cảnh báo doanh thu và dữ liệu</div>
+                </div>
+
+                <div class="kpi-card">
+                    <h4>Tổng bệnh nhân</h4>
+                    <div id="kpiTotalPatients" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Số bệnh nhân duy nhất</div>
+                </div>
+
+                <div class="kpi-card">
+                    <h4>Số lượt điều trị</h4>
+                    <div id="kpiTotalTreatments" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Số lượt khám/điều trị</div>
+                </div>
+            </section>
+
+            <section class="charts-grid">
+                <div class="chart-card chart-wide">
+                    <h3>Monitoring doanh thu theo ngày</h3>
+                    <p class="chart-description">Đường doanh thu thực tế so với trung bình 7 ngày.</p>
+                    <canvas id="dailyRevenueChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Cơ cấu nguồn thanh toán</h3>
+                    <canvas id="paymentChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Top 5 khoa theo doanh thu</h3>
+                    <canvas id="topDepartmentChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Doanh thu theo nhóm dịch vụ</h3>
+                    <canvas id="serviceGroupChart"></canvas>
+                </div>
+            </section>
+
+            <section class="panel-grid">
+                <div class="panel-card">
+                    <h3>Bảng cảnh báo monitoring</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ngày</th>
+                                    <th>Mức độ</th>
+                                    <th>Đối tượng</th>
+                                    <th>Nội dung</th>
+                                    <th>Biến động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alertTableBody">
+                                <tr>
+                                    <td colspan="5">Đang tải dữ liệu...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <h3>Monitoring theo khoa/phòng</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Khoa/phòng</th>
+                                    <th>Hôm nay</th>
+                                    <th>TB 7 ngày</th>
+                                    <th>Biến động</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="departmentTableBody">
+                                <tr>
+                                    <td colspan="5">Đang tải dữ liệu...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <h3>Monitoring theo nhóm dịch vụ</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nhóm dịch vụ</th>
+                                    <th>Hôm nay</th>
+                                    <th>TB 7 ngày</th>
+                                    <th>Biến động</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="serviceTableBody">
+                                <tr>
+                                    <td colspan="5">Đang tải dữ liệu...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <h3>Data Quality Monitor</h3>
+                    <div class="quality-grid">
+                        <div class="quality-item">
+                            <span>Thiếu ID ngày</span>
+                            <strong id="dqMissingDate">--</strong>
+                        </div>
+
+                        <div class="quality-item">
+                            <span>Thiếu ID dịch vụ</span>
+                            <strong id="dqMissingService">--</strong>
+                        </div>
+
+                        <div class="quality-item">
+                            <span>Thiếu ID khoa</span>
+                            <strong id="dqMissingDepartment">--</strong>
+                        </div>
+
+                        <div class="quality-item">
+                            <span>Doanh thu âm</span>
+                            <strong id="dqNegativeRevenue">--</strong>
+                        </div>
+
+                        <div class="quality-item">
+                            <span>Doanh thu bằng 0</span>
+                            <strong id="dqZeroRevenue">--</strong>
+                        </div>
+
+                        <div class="quality-item">
+                            <span>Lỗi mapping dimension</span>
+                            <strong id="dqUnmapped">--</strong>
+                        </div>
+
+                        <div class="quality-item quality-total">
+                            <span>Tổng vấn đề</span>
+                            <strong id="dqTotalIssues">--</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="charts.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+ID_DICHVU,TEN_DICHVU,LOAI_DICHVU,NHOM_DICHVU
+1,Khám bệnh,Khám bệnh,Khám bệnh
+2,Xét nghiệm máu,Xét nghiệm,XN
+3,Xét nghiệm nước tiểu,Xét nghiệm,XN
+4,Siêu âm,Chẩn đoán,CDHA
+5,X-quang,Chẩn đoán,CDHA
+6,CT Scan,Chẩn đoán,CDHA
+7,MRI,Chẩn đoán,CDHA
+8,Nội soi dạ dày,Chẩn đoán,CDHA
+9,Điện tim ECG,Chẩn đoán,CDHA
+10,Siêu âm tim,Chẩn đoán,CDHA
+11,Truyền dịch,Điều trị,Điều trị
+12,Thay băng,Điều trị,Điều trị
+13,Tiểu phẫu,Thủ thuật,Thủ thuật
+14,Phẫu thuật nội soi,Phẫu thuật,Phẫu thuật
+15,Phẫu thuật mở,Phẫu thuật,Phẫu thuật
+16,Giường điều trị,Giường,Giường
+17,Giường hồi sức,Giường,Giường
+18,Thuốc kháng sinh,Thuốc,Thuốc
+19,Thuốc giảm đau,Thuốc,Thuốc
+20,Thuốc tim mạch,Thuốc,Thuốc
+21,Hóa trị,Điều trị,Điều trị
+22,Xạ trị,Điều trị,Điều trị
+23,Xét nghiệm sinh hóa,Xét nghiệm,XN
+24,Xét nghiệm vi sinh,Xét nghiệm,XN
+25,Thuốc tiêm,Thuốc,Thuốc
+26,Vật tư y tế,Vật tư,Vật tư
+27,Chụp tuyến vú,Chẩn đoán,CDHA
+28,Chụp xương,Chẩn đoán,CDHA
+29,Điện não đồ EEG,Chẩn đoán,CDHA
+30,Khám tổng quát,Khám bệnh,Khám bệnh

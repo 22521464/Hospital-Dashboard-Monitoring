@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập giao dịch viện phí</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Hospital Monitor</h2>
+                <p>Mini HIS Data Entry</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="/">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <a href="/data-entry">Nhập viện phí</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <p><strong>Administrator</strong></p>
+                    <p>Localhost Demo</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Nhập giao dịch viện phí giả lập</h1>
+                    <p>Module mini HIS dùng để phát sinh dữ liệu doanh thu cho dashboard monitoring.</p>
+                </div>
+            </header>
+
+            <section class="form-layout">
+                <div class="form-card">
+                    <h3>Thông tin giao dịch</h3>
+
+                    <form id="revenueForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="ngay">Ngày phát sinh</label>
+                                <input type="date" id="ngay" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_benhnhan">Mã bệnh nhân</label>
+                                <input type="text" id="id_benhnhan" placeholder="VD: BN99999" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ho_ten">Họ tên</label>
+                                <input type="text" id="ho_ten" placeholder="Bệnh nhân giả lập">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gioi_tinh">Giới tính</label>
+                                <select id="gioi_tinh">
+                                    <option value="Không rõ">Không rõ</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nam_sinh">Năm sinh</label>
+                                <input type="number" id="nam_sinh" placeholder="VD: 1998">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_khambenh">Mã lượt khám</label>
+                                <input type="text" id="id_khambenh" placeholder="VD: KB202605080001" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_khoaphong">Khoa/phòng</label>
+                                <select id="id_khoaphong" required>
+                                    <option value="">-- Chọn khoa/phòng --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_dichvu">Dịch vụ</label>
+                                <select id="id_dichvu" required>
+                                    <option value="">-- Chọn dịch vụ --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_doituong">Nguồn thanh toán</label>
+                                <select id="id_doituong" required>
+                                    <option value="">-- Chọn nguồn thanh toán --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_loai_dieutri">Loại điều trị</label>
+                                <select id="id_loai_dieutri" required>
+                                    <option value="">-- Chọn loại điều trị --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="soluong">Số lượng</label>
+                                <input type="number" id="soluong" min="1" value="1" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dongia">Đơn giá</label>
+                                <input type="number" id="dongia" min="0" placeholder="VD: 150000" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ty_le_bhyt">Tỷ lệ BHYT trả (%)</label>
+                                <input type="number" id="ty_le_bhyt" min="0" max="100" value="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Thành tiền dự kiến</label>
+                                <div id="previewThanhtien" class="preview-box">0 ₫</div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn">Lưu giao dịch</button>
+                            <button type="reset" class="secondary-btn">Xóa form</button>
+                            <input 
+                                type="number" 
+                                id="sampleCount" 
+                                class="small-input" 
+                                min="1" 
+                                max="300" 
+                                value="100"
+                            >
+                            <button type="button" id="generateSampleBtn" class="secondary-btn">
+                                Tạo giao dịch mẫu
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+
+                <div class="form-card">
+                    <h3>Giao dịch mới nhất</h3>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ngày</th>
+                                    <th>Bệnh nhân</th>
+                                    <th>Khoa</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentTransactionBody">
+                                <tr>
+                                    <td colspan="5">Đang tải dữ liệu...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="data_entry.js"></script>
+</body>
+</html>
