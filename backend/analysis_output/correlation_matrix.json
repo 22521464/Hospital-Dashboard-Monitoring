@@ -1,0 +1,277 @@
+{
+  "generated_at": "2026-05-24T02:53:10.699640",
+  "department_correlation": {
+    "labels": [
+      "Khoa Chẩn đoán hình ảnh",
+      "Khoa Cấp cứu",
+      "Khoa Dược",
+      "Khoa Hồi sức tích cực",
+      "Khoa Khám bệnh",
+      "Khoa Ngoại",
+      "Khoa Nhi",
+      "Khoa Nội tổng hợp",
+      "Khoa Sản",
+      "Khoa Xét nghiệm"
+    ],
+    "matrix": [
+      [
+        1.0,
+        0.096,
+        0.114,
+        0.247,
+        0.171,
+        0.103,
+        0.223,
+        0.137,
+        0.227,
+        0.044
+      ],
+      [
+        0.096,
+        1.0,
+        0.016,
+        0.153,
+        0.159,
+        0.157,
+        0.153,
+        0.114,
+        0.209,
+        0.235
+      ],
+      [
+        0.114,
+        0.016,
+        1.0,
+        0.029,
+        0.018,
+        0.043,
+        0.041,
+        -0.013,
+        0.077,
+        0.213
+      ],
+      [
+        0.247,
+        0.153,
+        0.029,
+        1.0,
+        0.227,
+        0.263,
+        0.156,
+        0.159,
+        0.235,
+        0.214
+      ],
+      [
+        0.171,
+        0.159,
+        0.018,
+        0.227,
+        1.0,
+        0.214,
+        0.045,
+        0.188,
+        0.187,
+        0.272
+      ],
+      [
+        0.103,
+        0.157,
+        0.043,
+        0.263,
+        0.214,
+        1.0,
+        -0.007,
+        0.315,
+        0.264,
+        0.123
+      ],
+      [
+        0.223,
+        0.153,
+        0.041,
+        0.156,
+        0.045,
+        -0.007,
+        1.0,
+        0.02,
+        0.22,
+        0.043
+      ],
+      [
+        0.137,
+        0.114,
+        -0.013,
+        0.159,
+        0.188,
+        0.315,
+        0.02,
+        1.0,
+        0.279,
+        0.04
+      ],
+      [
+        0.227,
+        0.209,
+        0.077,
+        0.235,
+        0.187,
+        0.264,
+        0.22,
+        0.279,
+        1.0,
+        0.143
+      ],
+      [
+        0.044,
+        0.235,
+        0.213,
+        0.214,
+        0.272,
+        0.123,
+        0.043,
+        0.04,
+        0.143,
+        1.0
+      ]
+    ]
+  },
+  "service_correlation": {
+    "labels": [
+      "Chẩn đoán hình ảnh",
+      "Giường bệnh",
+      "Khám bệnh",
+      "Phẫu thuật / thủ thuật",
+      "Thuốc",
+      "Vật tư y tế",
+      "Xét nghiệm"
+    ],
+    "matrix": [
+      [
+        1.0,
+        0.459,
+        0.651,
+        0.453,
+        0.512,
+        0.398,
+        0.574
+      ],
+      [
+        0.459,
+        1.0,
+        0.408,
+        0.416,
+        0.448,
+        0.348,
+        0.52
+      ],
+      [
+        0.651,
+        0.408,
+        1.0,
+        0.514,
+        0.561,
+        0.561,
+        0.541
+      ],
+      [
+        0.453,
+        0.416,
+        0.514,
+        1.0,
+        0.455,
+        0.409,
+        0.527
+      ],
+      [
+        0.512,
+        0.448,
+        0.561,
+        0.455,
+        1.0,
+        0.569,
+        0.573
+      ],
+      [
+        0.398,
+        0.348,
+        0.561,
+        0.409,
+        0.569,
+        1.0,
+        0.507
+      ],
+      [
+        0.574,
+        0.52,
+        0.541,
+        0.527,
+        0.573,
+        0.507,
+        1.0
+      ]
+    ]
+  },
+  "dept_volume_revenue": [
+    {
+      "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
+      "total_revenue": 1453724897.0,
+      "total_visits": 687,
+      "total_patients": 302
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Cấp cứu",
+      "total_revenue": 1554458251.0,
+      "total_visits": 708,
+      "total_patients": 315
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Dược",
+      "total_revenue": 1762395827.0,
+      "total_visits": 711,
+      "total_patients": 297
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
+      "total_revenue": 1818653325.0,
+      "total_visits": 722,
+      "total_patients": 316
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Khám bệnh",
+      "total_revenue": 1520007802.0,
+      "total_visits": 699,
+      "total_patients": 307
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Ngoại",
+      "total_revenue": 1835975410.0,
+      "total_visits": 792,
+      "total_patients": 308
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Nhi",
+      "total_revenue": 1582694778.0,
+      "total_visits": 687,
+      "total_patients": 306
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
+      "total_revenue": 1643866280.0,
+      "total_visits": 744,
+      "total_patients": 310
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Sản",
+      "total_revenue": 1858034740.0,
+      "total_visits": 755,
+      "total_patients": 298
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Xét nghiệm",
+      "total_revenue": 1570461364.0,
+      "total_visits": 725,
+      "total_patients": 327
+    }
+  ]
+}

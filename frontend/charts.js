@@ -4,6 +4,7 @@ let dailyRevenueChart = null;
 let paymentChart = null;
 let topDepartmentChart = null;
 let serviceGroupChart = null;
+let treatmentTypeChart = null;
 
 const formatVND = (value) => {
     return new Intl.NumberFormat("vi-VN", {
@@ -91,7 +92,7 @@ async function loadMonitoringSummary() {
         `So với hôm trước: ${formatPercent(data.change_vs_yesterday)}`;
 
     document.getElementById("kpiChangeVs7d").textContent =
-        `So với TB 7 ngày: ${formatPercent(data.change_vs_7d)}`;
+        `Ngày gần nhất so với TB: ${formatPercent(data.change_vs_7d)}`;
 
     const statusEl = document.getElementById("kpiSystemStatus");
     statusEl.textContent = data.system_status;
@@ -145,7 +146,7 @@ async function loadDailyRevenueChart() {
                     tension: 0.35
                 },
                 {
-                    label: "Doanh thu TB",
+                    label: "TB 7 ngày",
                     data: avgValues,
                     borderColor: "#ef6c00",
                     borderWidth: 2,
@@ -171,7 +172,8 @@ async function loadDailyRevenueChart() {
                     }
                 },
                 legend: {
-                    display: false
+                    display: true,
+                    position: "top"
                 }
             },
             scales: {
@@ -203,7 +205,11 @@ async function loadPaymentMethodChart() {
             labels: labels,
             datasets: [{
                 data: values,
-                backgroundColor: ["#1976d2", "#8e24aa", "#fb8c00"]
+                backgroundColor: [
+                    "#1976d2", "#8e24aa", "#fb8c00",
+                    "#00897b", "#e53935", "#43a047",
+                    "#f06292", "#546e7a"
+                ]
             }]
         },
         options: {
@@ -222,7 +228,8 @@ async function loadPaymentMethodChart() {
 }
 
 async function loadTopDepartmentChart() {
-    const data = await fetchJSON(apiUrl("/api/revenue-by-department"));
+    const rawData = await fetchJSON(apiUrl("/api/revenue-by-department"));
+    const data = rawData.slice(0, 5);
 
     const labels = data.map(item => item.TEN_KHOAPHONG);
     const values = data.map(item => item.THANHTIEN);
@@ -296,6 +303,55 @@ async function loadServiceGroupChart() {
             },
             scales: {
                 y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return formatVND(value);
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+async function loadTreatmentTypeChart() {
+    const data = await fetchJSON(apiUrl("/api/revenue-by-treatment-type"));
+
+    const labels = data.map(item => item.TEN_LOAI_DIEUTRI ?? "(Không rõ)");
+    const values = data.map(item => item.THANHTIEN);
+    const percents = data.map(item => item.PHAN_TRAM);
+
+    destroyChart(treatmentTypeChart);
+
+    treatmentTypeChart = new Chart(document.getElementById("treatmentTypeChart"), {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Doanh thu",
+                data: values,
+                backgroundColor: ["#1976d2", "#43a047", "#fb8c00", "#8e24aa"],
+                borderRadius: 6,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            indexAxis: "y",
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const pct = percents[context.dataIndex];
+                            return `${formatVND(context.raw)}  (${pct}%)`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
@@ -395,21 +451,15 @@ async function loadDataQuality() {
         if (el) el.textContent = value;
     };
 
-    const totalRows = data.total_rows ?? 0;
-    const missingDate = data.missing_date ?? data.missing_ngay ?? 0;
-    const missingService = data.missing_dichvu ?? data.missing_service ?? 0;
-    const missingDepartment = data.missing_khoaphong ?? data.missing_department ?? 0;
-    const negativeRevenue = data.negative_thanhtien ?? data.negative_revenue ?? 0;
+    const missingDate = data.missing_ngay ?? 0;
+    const missingService = data.missing_dichvu ?? 0;
+    const missingDepartment = data.missing_khoaphong ?? 0;
+    const negativeRevenue = data.negative_thanhtien ?? 0;
     const zeroRevenue = data.zero_revenue ?? 0;
+    const unmapped = data.unmapped_total ?? 0;
+    const totalIssues = data.total_issues ?? 0;
+    const qualityScore = data.quality_score ?? null;
 
-    // Unmapped might be returned either as a single number or separate parts
-    const unmapped =
-        data.unmapped_total ??
-        ((data.unmapped_khoa ?? 0) + (data.unmapped_dichvu ?? 0) + (data.unmapped_doituong ?? 0));
-
-    const totalIssues = data.total_issues ?? data.total_issues_count ?? 0;
-
-    // New UI block ids
     setText("dqMissingDate", missingDate);
     setText("dqMissingService", missingService);
     setText("dqMissingDepartment", missingDepartment);
@@ -418,63 +468,62 @@ async function loadDataQuality() {
     setText("dqUnmapped", unmapped);
     setText("dqTotalIssues", totalIssues);
 
-    // Legacy UI ids (if still present in some versions of index.html)
-    setText("qualityTotalRows", totalRows);
-    setText("qualityMissingKhoaphong", missingDepartment);
-    setText("qualityMissingDichvu", missingService);
-    setText("qualityNegativeRevenue", negativeRevenue);
-    setText("qualityZeroRevenue", zeroRevenue);
-    setText("qualityUnmapped", unmapped);
-    setText("qualityTotalIssues", totalIssues);
-
-    if (document.getElementById("qualityScore") && typeof data.quality_score === "number") {
-        setText("qualityScore", `${data.quality_score.toFixed(2)}%`);
+    if (typeof qualityScore === "number") {
+        setText("dqQualityScore", `${qualityScore.toFixed(1)}%`);
     }
 }
 
 function setupDateFilterEvents() {
-    const presetSelect = document.getElementById("datePreset");
+    const hiddenPreset = document.getElementById("datePreset");
+    const presetTabs = document.querySelectorAll(".preset-tab");
+    const customRange = document.getElementById("customDateRange");
     const startDateInput = document.getElementById("startDate");
     const endDateInput = document.getElementById("endDate");
+    const applyBtn = document.getElementById("applyFilterBtn");
 
-    if (!presetSelect || !startDateInput || !endDateInput) {
-        return;
-    }
+    if (!hiddenPreset || !presetTabs.length) return;
 
-    const isValidISODate = (value) => {
-        return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+    const isValidISODate = (v) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v);
+
+    const activateTab = (value) => {
+        presetTabs.forEach(t => t.classList.toggle("active", t.dataset.value === value));
+        hiddenPreset.value = value;
     };
 
-    presetSelect.addEventListener("change", () => {
-        const isCustom = presetSelect.value === "custom";
+    presetTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            const value = tab.dataset.value;
+            activateTab(value);
 
-        startDateInput.disabled = !isCustom;
-        endDateInput.disabled = !isCustom;
-
-        if (!isCustom) {
-            startDateInput.value = "";
-            endDateInput.value = "";
-            loadDashboard();
-        } else {
-            // If user switches to custom, keep values but avoid auto-loading until valid.
-            const s = startDateInput.value;
-            const e = endDateInput.value;
-            if (isValidISODate(s) && isValidISODate(e)) {
+            if (value === "custom") {
+                customRange.style.display = "flex";
+                if (isValidISODate(startDateInput?.value) && isValidISODate(endDateInput?.value)) {
+                    loadDashboard();
+                }
+            } else {
+                customRange.style.display = "none";
+                if (startDateInput) startDateInput.value = "";
+                if (endDateInput) endDateInput.value = "";
                 loadDashboard();
             }
-        }
+        });
     });
 
+    // Auto-reload when both custom dates are valid
     const maybeReloadCustom = () => {
-        if (presetSelect.value !== "custom") return;
-        const s = startDateInput.value;
-        const e = endDateInput.value;
-        if (!isValidISODate(s) || !isValidISODate(e)) return;
+        if (hiddenPreset.value !== "custom") return;
+        if (!isValidISODate(startDateInput?.value) || !isValidISODate(endDateInput?.value)) return;
         loadDashboard();
     };
 
-    startDateInput.addEventListener("change", maybeReloadCustom);
-    endDateInput.addEventListener("change", maybeReloadCustom);
+    startDateInput?.addEventListener("change", maybeReloadCustom);
+    endDateInput?.addEventListener("change", maybeReloadCustom);
+
+    applyBtn?.addEventListener("click", () => {
+        if (isValidISODate(startDateInput?.value) && isValidISODate(endDateInput?.value)) {
+            loadDashboard();
+        }
+    });
 }
 
 async function loadDashboard() {
@@ -484,6 +533,7 @@ async function loadDashboard() {
         destroyChart(paymentChart);
         destroyChart(topDepartmentChart);
         destroyChart(serviceGroupChart);
+        destroyChart(treatmentTypeChart);
 
         // Load all data in parallel
         await Promise.all([
@@ -493,6 +543,7 @@ async function loadDashboard() {
             loadPaymentMethodChart(),
             loadTopDepartmentChart(),
             loadServiceGroupChart(),
+            loadTreatmentTypeChart(),
             loadAlerts(),
             loadDepartmentMonitoring(),
             loadServiceMonitoring(),

@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-05-24T02:53:10.699640",
+  "overall": {
+    "mean": 2295074.336236693,
+    "median": 522141.0,
+    "std": 5196286.607170522,
+    "p25": 272204.0,
+    "p75": 1339400.0,
+    "min": 81145.0,
+    "max": 30567927.0,
+    "total": 16600272674.0,
+    "count": 7233
+  },
+  "bhyt_ratio": 35.22,
+  "revenue_per_patient": 23217165.0,
+  "revenue_per_visit": 2304313.0,
+  "unique_patients": 715,
+  "unique_visits": 7204,
+  "by_department": [
+    {
+      "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
+      "total": 1453724897.0,
+      "mean": 2116048.0,
+      "median": 508610.0,
+      "std": 4973567.0,
+      "count": 687,
+      "unique_patients": 302,
+      "unique_visits": 687,
+      "revenue_per_visit": 2116048.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Cấp cứu",
+      "total": 1554458251.0,
+      "mean": 2195563.0,
+      "median": 527970.0,
+      "std": 4798899.0,
+      "count": 708,
+      "unique_patients": 315,
+      "unique_visits": 708,
+      "revenue_per_visit": 2195563.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Dược",
+      "total": 1762395827.0,
+      "mean": 2478756.0,
+      "median": 547259.0,
+      "std": 5354797.0,
+      "count": 711,
+      "unique_patients": 297,
+      "unique_visits": 711,
+      "revenue_per_visit": 2478756.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
+      "total": 1818653325.0,
+      "mean": 2515426.0,
+      "median": 533018.0,
+      "std": 5628341.0,
+      "count": 723,
+      "unique_patients": 316,
+      "unique_visits": 722,
+      "revenue_per_visit": 2518910.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Khám bệnh",
+      "total": 1520007802.0,
+      "mean": 2171440.0,
+      "median": 508790.0,
+      "std": 5110032.0,
+      "count": 700,
+      "unique_patients": 307,
+      "unique_visits": 699,
+      "revenue_per_visit": 2174546.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Ngoại",
+      "total": 1835975410.0,
+      "mean": 2318151.0,
+      "median": 522900.0,
+      "std": 5343253.0,
+      "count": 792,
+      "unique_patients": 308,
+      "unique_visits": 792,
+      "revenue_per_visit": 2318151.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Nhi",
+      "total": 1582694778.0,
+      "mean": 2303777.0,
+      "median": 527307.0,
+      "std": 5120348.0,
+      "count": 687,
+      "unique_patients": 306,
+      "unique_visits": 687,
+      "revenue_per_visit": 2303777.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
+      "total": 1643866280.0,
+      "mean": 2206532.0,
+      "median": 531815.0,
+      "std": 4899232.0,
+      "count": 745,
+      "unique_patients": 310,
+      "unique_visits": 744,
+      "revenue_per_visit": 2209498.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Sản",
+      "total": 1858034740.0,
+      "mean": 2460973.0,
+      "median": 535077.0,
+      "std": 5496935.0,
+      "count": 755,
+      "unique_patients": 298,
+      "unique_visits": 755,
+      "revenue_per_visit": 2460973.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Xét nghiệm",
+      "total": 1570461364.0,
+      "mean": 2166154.0,
+      "median": 483103.0,
+      "std": 5148712.0,
+      "count": 725,
+      "unique_patients": 327,
+      "unique_visits": 725,
+      "revenue_per_visit": 2166154.0
+    }
+  ],
+  "by_service_group": [
+    {
+      "NHOM_DICHVU": "Chẩn đoán hình ảnh",
+      "total": 2024777992.0,
+      "mean": 1123005.0,
+      "count": 1803
+    },
+    {
+      "NHOM_DICHVU": "Giường bệnh",
+      "total": 631173187.0,
+      "mean": 1043261.0,
+      "count": 605
+    },
+    {
+      "NHOM_DICHVU": "Khám bệnh",
+      "total": 466952722.0,
+      "mean": 409967.0,
+      "count": 1139
+    },
+    {
+      "NHOM_DICHVU": "Phẫu thuật / thủ thuật",
+      "total": 12477953013.0,
+      "mean": 10803423.0,
+      "count": 1155
+    },
+    {
+      "NHOM_DICHVU": "Thuốc",
+      "total": 396612431.0,
+      "mean": 629544.0,
+      "count": 630
+    },
+    {
+      "NHOM_DICHVU": "Vật tư y tế",
+      "total": 337815016.0,
+      "mean": 509525.0,
+      "count": 663
+    },
+    {
+      "NHOM_DICHVU": "Xét nghiệm",
+      "total": 264988313.0,
+      "mean": 214045.0,
+      "count": 1238
+    }
+  ],
+  "by_day_of_week": [
+    {
+      "THU": 0,
+      "THU_TEN": "Monday",
+      "total": 2368858220.0,
+      "mean": 2459873.541017653,
+      "count": 963,
+      "THU_VI": "Thứ Hai"
+    },
+    {
+      "THU": 1,
+      "THU_TEN": "Tuesday",
+      "total": 2024152188.0,
+      "mean": 2195392.8286334057,
+      "count": 922,
+      "THU_VI": "Thứ Ba"
+    },
+    {
+      "THU": 2,
+      "THU_TEN": "Wednesday",
+      "total": 2437904787.0,
+      "mean": 2159348.7927369354,
+      "count": 1129,
+      "THU_VI": "Thứ Tư"
+    },
+    {
+      "THU": 3,
+      "THU_TEN": "Thursday",
+      "total": 2774471410.0,
+      "mean": 2410487.758470895,
+      "count": 1151,
+      "THU_VI": "Thứ Năm"
+    },
+    {
+      "THU": 4,
+      "THU_TEN": "Friday",
+      "total": 2020777816.0,
+      "mean": 2198887.7214363436,
+      "count": 919,
+      "THU_VI": "Thứ Sáu"
+    },
+    {
+      "THU": 5,
+      "THU_TEN": "Saturday",
+      "total": 2140505191.0,
+      "mean": 2096479.1292850147,
+      "count": 1021,
+      "THU_VI": "Thứ Bảy"
+    },
+    {
+      "THU": 6,
+      "THU_TEN": "Sunday",
+      "total": 2833603062.0,
+      "mean": 2512059.4521276597,
+      "count": 1128,
+      "THU_VI": "Chủ Nhật"
+    }
+  ]
+}

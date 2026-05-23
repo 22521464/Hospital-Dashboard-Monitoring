@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-05-24T03:19:13.365035",
+  "executive_summary": "Phân tích 7,233 giao dịch với tổng doanh thu 16,600,272,674 VNĐ từ 715 bệnh nhân. Dự báo 30 ngày tới tăng trưởng 50.0%. Tổng hợp 7 phát hiện: 2 tích cực, 2 cần theo dõi, 3 thông tin.",
+  "total_findings": 7,
+  "n_positive": 2,
+  "n_warning": 2,
+  "n_info": 3,
+  "findings": [
+    {
+      "id": 1,
+      "title": "Khoa Sản dẫn đầu doanh thu toàn viện",
+      "metric": "11.2% tổng doanh thu",
+      "explanation": "Khoa Khoa Sản đóng góp 11.2% tổng doanh thu (1,858,034,740 VNĐ), cao hơn khoa đứng thứ 2 (Khoa Ngoại) 1.0 lần. Khoa này cũng có 755 lượt khám với doanh thu bình quân 2,460,973 VNĐ/lượt.",
+      "recommendation": "Đây là nguồn doanh thu cốt lõi. Ưu tiên duy trì chất lượng và năng lực khoa Khoa Sản. Đồng thời xem xét nhân rộng mô hình vận hành sang các khoa khác.",
+      "level": "positive"
+    },
+    {
+      "id": 2,
+      "title": "Tỷ lệ BHYT chi trả ở mức 35.2%",
+      "metric": "BHYT 35.2% | Tự trả 64.8%",
+      "explanation": "Bảo hiểm y tế chi trả 35.2% tổng doanh thu toàn viện. Tỷ lệ này ảnh hưởng trực tiếp đến biên lợi nhuận thực tế vì mức thanh toán BHYT thường thấp hơn giá dịch vụ niêm yết.",
+      "recommendation": "Cơ cấu thanh toán cân bằng. Theo dõi định kỳ để phát hiện thay đổi bất thường.",
+      "level": "info"
+    },
+    {
+      "id": 3,
+      "title": "Chủ Nhật là ngày có doanh thu cao nhất trong tuần",
+      "metric": "Cao hơn ngày thấp nhất 17%",
+      "explanation": "Chủ Nhật có doanh thu trung bình 2,512,059 VNĐ/giao dịch, cao hơn Thứ Bảy (2,096,479 VNĐ) tới 17%. Pattern này lặp lại đều cho thấy có hành vi bệnh nhân có tính mùa vụ theo tuần.",
+      "recommendation": "Tối ưu lịch nhân sự tập trung vào Chủ Nhật. Cân nhắc chương trình khuyến khích đặt lịch vào Thứ Bảy để cân bằng tải.",
+      "level": "info"
+    },
+    {
+      "id": 4,
+      "title": "Nhóm 'Phẫu thuật / thủ thuật' chiếm tỷ trọng cao nhất",
+      "metric": "75.2% tổng doanh thu",
+      "explanation": "Nhóm dịch vụ 'Phẫu thuật / thủ thuật' đóng góp 75.2% tổng doanh thu (12,477,953,013 VNĐ). Tỷ trọng quá cao tạo rủi ro tập trung.",
+      "recommendation": "Đa dạng hóa danh mục dịch vụ để giảm phụ thuộc vào một nhóm duy nhất. Đầu tư phát triển các nhóm dịch vụ tiềm năng như chẩn đoán hình ảnh và xét nghiệm.",
+      "level": "warning"
+    },
+    {
+      "id": 5,
+      "title": "Mỗi lượt khám tạo ra trung bình 2,304,313 VNĐ",
+      "metric": "1.0 dịch vụ/lượt khám",
+      "explanation": "Doanh thu trung bình mỗi lượt khám là 2,304,313 VNĐ, tương đương khoảng 1.0 dịch vụ/lượt (so với đơn giá trung bình 2,295,074 VNĐ/dịch vụ). Chỉ số này phản ánh mức độ sử dụng dịch vụ kết hợp của bệnh nhân.",
+      "recommendation": "Tăng revenue per visit bằng cách phát triển gói khám tổng hợp kết hợp nhiều dịch vụ (khám + xét nghiệm + chẩn đoán hình ảnh). Đây là đòn bẩy hiệu quả để tăng doanh thu mà không cần tăng số lượt khám.",
+      "level": "info"
+    },
+    {
+      "id": 7,
+      "title": "Tốc độ tăng trưởng trung bình -11.8%/tháng",
+      "metric": "2/4 tháng tăng trưởng dương",
+      "explanation": "Trong 4 tháng phân tích, có 2 tháng ghi nhận tăng trưởng dương. Tốc độ tăng trưởng trung bình đạt -11.8%/tháng. Xu hướng cần cải thiện.",
+      "recommendation": "Rà soát nguyên nhân tăng trưởng âm: chất lượng dịch vụ, cạnh tranh, hay yếu tố mùa vụ. Xây dựng kế hoạch cải thiện doanh thu ngắn hạn.",
+      "level": "warning"
+    },
+    {
+      "id": 8,
+      "title": "Dự báo doanh thu tháng tới tăng 50.0%",
+      "metric": "6,809,894,795 VNĐ",
+      "explanation": "Model Holt-Winters (trend + seasonal 7 ngày) dự báo tổng doanh thu 30 ngày tới đạt 6,809,894,795 VNĐ — tăng 50.0% so với 30 ngày vừa qua. Khoảng tin cậy 95%: 45,476,117 → 23,710,692,294 VNĐ.",
+      "recommendation": "Chuẩn bị nhân lực và vật tư phù hợp với mức tăng dự kiến. Theo dõi sát doanh thu thực tế hàng ngày để phát hiện lệch so với dự báo sớm.",
+      "level": "positive"
+    }
+  ],
+  "data_sources": {
+    "descriptive_stats": "2026-05-24T02:53:10.699640",
+    "correlation_matrix": "2026-05-24T02:53:10.699640",
+    "trend_analysis": "2026-05-24T02:53:10.699640",
+    "forecast": "2026-05-24T03:10:48.159078"
+  }
+}

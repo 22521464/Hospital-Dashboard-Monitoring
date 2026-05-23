@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Analysis — Hospital Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Hospital Monitor</h2>
+                <p>Statistical Analysis</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/">Dashboard</a></li>
+                    <li><a href="/data-entry">Nhập viện phí</a></li>
+                    <li class="active"><a href="/analysis">Phân tích</a></li>
+                    <li><a href="/report">Báo cáo</a></li>
+                    <li><a href="/data-quality">Chất lượng DL</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <p><strong>Administrator</strong></p>
+                    <p>Localhost Demo</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Statistical Analysis</h1>
+                    <p id="analysisStatusText">Đang kiểm tra dữ liệu phân tích...</p>
+                </div>
+            </header>
+
+            <!-- Status banner -->
+            <div id="analysisBanner" class="analysis-banner analysis-banner-warning" style="display:none;">
+                <strong>⚠ Chưa có dữ liệu phân tích.</strong>
+                Hãy mở và chạy toàn bộ notebook
+                <code>analysis/revenue_analysis.ipynb</code>
+                để xuất kết quả, sau đó tải lại trang này.
+            </div>
+
+            <!-- ── Section: Forecast ── -->
+            <section class="analysis-section">
+                <h2 class="section-title">Forecasting Model</h2>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <h4>Dự báo tổng 30 ngày tới</h4>
+                        <div id="fcTotal" class="kpi-value">--</div>
+                        <div id="fcGrowth" class="kpi-subtext">vs 30 ngày qua: --</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Khoảng tin cậy 95%</h4>
+                        <div id="fcLower" class="kpi-value">--</div>
+                        <div class="kpi-subtext" id="fcUpper">Tối đa: --</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Ngày dữ liệu cuối</h4>
+                        <div id="fcLastDate" class="kpi-value">--</div>
+                        <div class="kpi-subtext">Dự báo bắt đầu từ ngày tiếp theo</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Model sử dụng</h4>
+                        <div id="fcModel" class="kpi-value" style="font-size:14px;line-height:1.4;">--</div>
+                        <div class="kpi-subtext">Forecasting algorithm</div>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-card chart-wide">
+                        <h3>Dự báo doanh thu 30 ngày tới</h3>
+                        <p class="chart-description">Đường xanh = thực tế, đường đỏ = dự báo, vùng mờ = khoảng tin cậy 95%.</p>
+                        <canvas id="fcForecastChart"></canvas>
+                    </div>
+                    <div class="chart-card chart-wide">
+                        <h3>Scenario Analysis — Kịch bản tăng/giảm doanh thu</h3>
+                        <p class="chart-description">Dự báo tổng 30 ngày tới nếu doanh thu thực tế thay đổi theo các kịch bản.</p>
+                        <canvas id="fcScenarioChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="panel-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="panel-card">
+                        <h3>Bảng kịch bản toàn viện</h3>
+                        <div class="table-wrapper">
+                            <table id="fcScenarioTable">
+                                <thead>
+                                    <tr>
+                                        <th>Kịch bản</th>
+                                        <th>Doanh thu dự báo</th>
+                                        <th>vs 30 ngày qua</th>
+                                    </tr>
+                                </thead>
+                                <tbody><tr><td colspan="3">Đang tải...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <h3>Impact nếu mỗi khoa tăng 10%</h3>
+                        <div class="table-wrapper">
+                            <table id="fcDeptTable">
+                                <thead>
+                                    <tr>
+                                        <th>Khoa/phòng</th>
+                                        <th>Base forecast</th>
+                                        <th>Tăng thêm (+10%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody><tr><td colspan="3">Đang tải...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Section 2: Descriptive Stats ── -->
+            <section class="analysis-section">
+                <h2 class="section-title">Descriptive Statistics</h2>
+
+                <div class="kpi-grid" id="descKpiGrid">
+                    <div class="kpi-card">
+                        <h4>Doanh thu trung bình / giao dịch</h4>
+                        <div id="descMean" class="kpi-value">--</div>
+                        <div class="kpi-subtext">Mean</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Trung vị / giao dịch</h4>
+                        <div id="descMedian" class="kpi-value">--</div>
+                        <div class="kpi-subtext">Median</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Độ lệch chuẩn</h4>
+                        <div id="descStd" class="kpi-value">--</div>
+                        <div class="kpi-subtext">Std deviation</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Tỷ lệ BHYT chi trả</h4>
+                        <div id="descBhyt" class="kpi-value">--</div>
+                        <div class="kpi-subtext">% trên tổng doanh thu</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Doanh thu / bệnh nhân</h4>
+                        <div id="descRevPerPatient" class="kpi-value">--</div>
+                        <div class="kpi-subtext">Revenue per patient</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Doanh thu / lượt khám</h4>
+                        <div id="descRevPerVisit" class="kpi-value">--</div>
+                        <div class="kpi-subtext">Revenue per visit</div>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Doanh thu TB mỗi lượt khám theo khoa</h3>
+                        <canvas id="descRevVisitChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Cơ cấu doanh thu theo nhóm dịch vụ</h3>
+                        <canvas id="descServiceChart"></canvas>
+                    </div>
+                    <div class="chart-card chart-wide">
+                        <h3>Doanh thu trung bình theo ngày trong tuần</h3>
+                        <canvas id="descDowChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Section 3: Correlation ── -->
+            <section class="analysis-section">
+                <h2 class="section-title">Correlation Analysis</h2>
+
+                <div class="charts-grid">
+                    <div class="chart-card chart-wide">
+                        <h3>Số lượt khám vs Doanh thu theo khoa</h3>
+                        <p class="chart-description">Kích thước bubble = số bệnh nhân</p>
+                        <canvas id="corrScatterChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="panel-grid">
+                    <div class="panel-card panel-wide">
+                        <h3>Ma trận tương quan — Khoa/phòng</h3>
+                        <p class="chart-description">Hệ số Pearson correlation doanh thu theo ngày. Xanh = tương quan dương, Đỏ = ngược chiều.</p>
+                        <div class="table-wrapper">
+                            <table id="corrDeptTable" class="corr-table">
+                                <tbody>
+                                    <tr><td colspan="2">Đang tải...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-card panel-wide">
+                        <h3>Ma trận tương quan — Nhóm dịch vụ</h3>
+                        <p class="chart-description">Hệ số Pearson correlation doanh thu theo ngày.</p>
+                        <div class="table-wrapper">
+                            <table id="corrSvcTable" class="corr-table">
+                                <tbody>
+                                    <tr><td colspan="2">Đang tải...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Section 4: Trend ── -->
+            <section class="analysis-section">
+                <h2 class="section-title">Trend Analysis</h2>
+
+                <div class="charts-grid">
+                    <div class="chart-card chart-wide">
+                        <h3>Doanh thu theo tháng & tỷ lệ tăng trưởng MoM</h3>
+                        <canvas id="trendMonthlyChart"></canvas>
+                    </div>
+                    <div class="chart-card chart-wide" id="trendDecompCard">
+                        <h3>STL Decomposition — Xu hướng dài hạn</h3>
+                        <p class="chart-description">Tách doanh thu thành: Trend (xu hướng) + Seasonal (mùa vụ 7 ngày) + Residual (nhiễu).</p>
+                        <canvas id="trendDecompChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="analysis.js"></script>
+</body>
+</html>

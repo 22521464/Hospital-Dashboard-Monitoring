@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report — Hospital Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Hospital Monitor</h2>
+                <p>Analysis Report</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/">Dashboard</a></li>
+                    <li><a href="/data-entry">Nhập viện phí</a></li>
+                    <li><a href="/analysis">Phân tích</a></li>
+                    <li class="active"><a href="/report">Báo cáo</a></li>
+                    <li><a href="/data-quality">Chất lượng DL</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <p><strong>Administrator</strong></p>
+                    <p>Localhost Demo</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Analysis Report</h1>
+                    <p id="reportTimestamp">Đang tải...</p>
+                </div>
+            </header>
+
+            <!-- Banner chưa có dữ liệu -->
+            <div id="reportBanner" class="analysis-banner analysis-banner-warning" style="display:none;">
+                <strong>⚠ Chưa có báo cáo.</strong>
+                Hãy chạy lần lượt:
+                <code>revenue_analysis.ipynb</code> →
+                <code>forecasting.ipynb</code> →
+                <code>report.ipynb</code>,
+                sau đó tải lại trang.
+            </div>
+
+            <!-- Executive Summary -->
+            <div id="execSummaryCard" class="report-summary-card" style="display:none;">
+                <div class="report-summary-header">
+                    <span class="report-summary-label">Executive Summary</span>
+                    <div class="report-badge-row" id="summaryBadges"></div>
+                </div>
+                <p id="execSummaryText" class="report-summary-text"></p>
+            </div>
+
+            <!-- Findings -->
+            <div id="findingsContainer"></div>
+        </main>
+    </div>
+
+    <script src="report.js"></script>
+</body>
+</html>

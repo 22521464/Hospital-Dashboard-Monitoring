@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Quality Report — Hospital Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Hospital Monitor</h2>
+                <p>Data Quality</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/">Dashboard</a></li>
+                    <li><a href="/data-entry">Nhập viện phí</a></li>
+                    <li><a href="/analysis">Phân tích</a></li>
+                    <li><a href="/report">Báo cáo</a></li>
+                    <li class="active"><a href="/data-quality">Chất lượng DL</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <p><strong>Administrator</strong></p>
+                    <p>Localhost Demo</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Data Quality Report</h1>
+                    <p id="dqTimestamp">Đang tải...</p>
+                </div>
+            </header>
+
+            <div id="dqBanner" class="analysis-banner analysis-banner-warning" style="display:none;">
+                <strong>⚠ Chưa có dữ liệu.</strong>
+                Hãy chạy notebook <code>analysis/data_quality.ipynb</code> rồi tải lại trang.
+            </div>
+
+            <!-- KPI -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <h4>Quality Score</h4>
+                    <div id="dqScore" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Điểm chất lượng tổng hợp / 100</div>
+                </div>
+                <div class="kpi-card">
+                    <h4>Missing Values</h4>
+                    <div id="dqMissingTotal" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Tổng giá trị thiếu</div>
+                </div>
+                <div class="kpi-card">
+                    <h4>Outliers</h4>
+                    <div id="dqOutlierTotal" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Giao dịch bất thường (IQR + Z-score)</div>
+                </div>
+                <div class="kpi-card">
+                    <h4>Duplicates</h4>
+                    <div id="dqDupTotal" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Bản ghi có khả năng trùng lặp</div>
+                </div>
+                <div class="kpi-card">
+                    <h4>Validation Errors</h4>
+                    <div id="dqInvalidTotal" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Vi phạm quy tắc kiểm tra</div>
+                </div>
+                <div class="kpi-card">
+                    <h4>Tổng bản ghi</h4>
+                    <div id="dqTotalRecords" class="kpi-value">--</div>
+                    <div class="kpi-subtext">Records phân tích</div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div id="dqRecsCard" class="report-summary-card" style="display:none; margin-bottom:24px;">
+                <div class="report-summary-header">
+                    <span class="report-summary-label">Khuyến cáo</span>
+                </div>
+                <ul id="dqRecsList" style="margin:8px 0 0 0; padding-left:20px; color:#37474f; font-size:14px; line-height:1.8;"></ul>
+            </div>
+
+            <!-- Missing Values -->
+            <section class="analysis-section">
+                <h2 class="section-title">Missing Values</h2>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Tỷ lệ missing theo cột</h3>
+                        <canvas id="dqMissingBarChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Xu hướng missing theo tháng</h3>
+                        <canvas id="dqMissingTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="panel-card" style="margin-bottom:24px;">
+                    <h3>Chi tiết missing values</h3>
+                    <div class="table-wrapper">
+                        <table id="dqMissingTable">
+                            <thead><tr><th>Cột</th><th>Số thiếu</th><th>Tỷ lệ</th><th>Trạng thái</th></tr></thead>
+                            <tbody><tr><td colspan="4">Đang tải...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Outliers -->
+            <section class="analysis-section">
+                <h2 class="section-title">Outlier Detection</h2>
+                <div class="panel-card" style="margin-bottom:24px;">
+                    <h3>Top 20 giao dịch bất thường</h3>
+                    <p class="chart-description" id="dqOutlierDesc"></p>
+                    <div class="table-wrapper">
+                        <table id="dqOutlierTable">
+                            <thead><tr><th>ID</th><th>Ngày</th><th>Bệnh nhân</th><th>Khoa</th><th>Dịch vụ</th><th>Thành tiền</th><th>Z-score</th></tr></thead>
+                            <tbody><tr><td colspan="7">Đang tải...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Duplicates -->
+            <section class="analysis-section">
+                <h2 class="section-title">Duplicate Detection</h2>
+                <div class="panel-card" style="margin-bottom:24px;">
+                    <h3>Bản ghi có khả năng trùng lặp</h3>
+                    <p class="chart-description">Cùng bệnh nhân + khoa + dịch vụ + ngày.</p>
+                    <div class="table-wrapper">
+                        <table id="dqDupTable">
+                            <thead><tr><th>ID</th><th>Ngày</th><th>Bệnh nhân</th><th>Khoa</th><th>Dịch vụ</th><th>SL</th><th>Thành tiền</th></tr></thead>
+                            <tbody><tr><td colspan="7">Đang tải...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Validation -->
+            <section class="analysis-section">
+                <h2 class="section-title">Data Validation</h2>
+                <div class="panel-card">
+                    <h3>Kết quả kiểm tra quy tắc</h3>
+                    <div class="table-wrapper">
+                        <table id="dqValidationTable">
+                            <thead><tr><th>Quy tắc</th><th>Số vi phạm</th><th>Tỷ lệ</th><th>Trạng thái</th></tr></thead>
+                            <tbody><tr><td colspan="4">Đang tải...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="data_quality.js"></script>
+</body>
+</html>

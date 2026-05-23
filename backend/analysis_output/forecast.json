@@ -1,0 +1,582 @@
+{
+  "generated_at": "2026-05-24T03:10:48.159078",
+  "model": "Holt-Winters (trend + seasonal 7 ngày)",
+  "forecast_days": 30,
+  "last_actual_date": "2026-05-10",
+  "monthly_forecast": {
+    "predicted_total": 6809894795,
+    "lower_95": 45476117,
+    "upper_95": 23710692294,
+    "growth_vs_last_30d": 50.0
+  },
+  "daily_forecast": [
+    {
+      "date": "2026-05-11",
+      "predicted": 196264558,
+      "lower": 45476117,
+      "upper": 347052999
+    },
+    {
+      "date": "2026-05-12",
+      "predicted": 178642084,
+      "lower": 0,
+      "upper": 391889143
+    },
+    {
+      "date": "2026-05-13",
+      "predicted": 199984078,
+      "lower": 0,
+      "upper": 461157319
+    },
+    {
+      "date": "2026-05-14",
+      "predicted": 203151889,
+      "lower": 0,
+      "upper": 504728771
+    },
+    {
+      "date": "2026-05-15",
+      "predicted": 174183891,
+      "lower": 0,
+      "upper": 511357095
+    },
+    {
+      "date": "2026-05-16",
+      "predicted": 181408946,
+      "lower": 0,
+      "upper": 550763685
+    },
+    {
+      "date": "2026-05-17",
+      "predicted": 221958121,
+      "lower": 0,
+      "upper": 620906837
+    },
+    {
+      "date": "2026-05-18",
+      "predicted": 216516836,
+      "lower": 0,
+      "upper": 643010953
+    },
+    {
+      "date": "2026-05-19",
+      "predicted": 198894362,
+      "lower": 0,
+      "upper": 651259685
+    },
+    {
+      "date": "2026-05-20",
+      "predicted": 220236356,
+      "lower": 0,
+      "upper": 697071274
+    },
+    {
+      "date": "2026-05-21",
+      "predicted": 223404167,
+      "lower": 0,
+      "upper": 723512849
+    },
+    {
+      "date": "2026-05-22",
+      "predicted": 194436168,
+      "lower": 0,
+      "upper": 716782651
+    },
+    {
+      "date": "2026-05-23",
+      "predicted": 201661223,
+      "lower": 0,
+      "upper": 745336679
+    },
+    {
+      "date": "2026-05-24",
+      "predicted": 242210399,
+      "lower": 0,
+      "upper": 806409083
+    },
+    {
+      "date": "2026-05-25",
+      "predicted": 236769113,
+      "lower": 0,
+      "upper": 820770234
+    },
+    {
+      "date": "2026-05-26",
+      "predicted": 219146639,
+      "lower": 0,
+      "upper": 822300404
+    },
+    {
+      "date": "2026-05-27",
+      "predicted": 240488634,
+      "lower": 0,
+      "upper": 862205303
+    },
+    {
+      "date": "2026-05-28",
+      "predicted": 243656445,
+      "lower": 0,
+      "upper": 883397620
+    },
+    {
+      "date": "2026-05-29",
+      "predicted": 214688446,
+      "lower": 0,
+      "upper": 871960023
+    },
+    {
+      "date": "2026-05-30",
+      "predicted": 221913501,
+      "lower": 0,
+      "upper": 896259910
+    },
+    {
+      "date": "2026-05-31",
+      "predicted": 262462677,
+      "lower": 0,
+      "upper": 953462122
+    },
+    {
+      "date": "2026-06-01",
+      "predicted": 257021391,
+      "lower": 0,
+      "upper": 964281871
+    },
+    {
+      "date": "2026-06-02",
+      "predicted": 239398917,
+      "lower": 0,
+      "upper": 962554876
+    },
+    {
+      "date": "2026-06-03",
+      "predicted": 260740911,
+      "lower": 0,
+      "upper": 999450391
+    },
+    {
+      "date": "2026-06-04",
+      "predicted": 263908722,
+      "lower": 0,
+      "upper": 1017850928
+    },
+    {
+      "date": "2026-06-05",
+      "predicted": 234940724,
+      "lower": 0,
+      "upper": 1003813927
+    },
+    {
+      "date": "2026-06-06",
+      "predicted": 242165779,
+      "lower": 0,
+      "upper": 1025685502
+    },
+    {
+      "date": "2026-06-07",
+      "predicted": 282714954,
+      "lower": 0,
+      "upper": 1080612385
+    },
+    {
+      "date": "2026-06-08",
+      "predicted": 277273669,
+      "lower": 0,
+      "upper": 1089294275
+    },
+    {
+      "date": "2026-06-09",
+      "predicted": 259651195,
+      "lower": 0,
+      "upper": 1085553500
+    }
+  ],
+  "historical_last_60d": [
+    {
+      "date": "2026-03-12",
+      "actual": 105215995
+    },
+    {
+      "date": "2026-03-13",
+      "actual": 187672217
+    },
+    {
+      "date": "2026-03-14",
+      "actual": 62534990
+    },
+    {
+      "date": "2026-03-15",
+      "actual": 203309241
+    },
+    {
+      "date": "2026-03-16",
+      "actual": 145930313
+    },
+    {
+      "date": "2026-03-17",
+      "actual": 88285753
+    },
+    {
+      "date": "2026-03-18",
+      "actual": 58902775
+    },
+    {
+      "date": "2026-03-19",
+      "actual": 202590039
+    },
+    {
+      "date": "2026-03-20",
+      "actual": 61452677
+    },
+    {
+      "date": "2026-03-21",
+      "actual": 172139833
+    },
+    {
+      "date": "2026-03-22",
+      "actual": 14287833
+    },
+    {
+      "date": "2026-03-23",
+      "actual": 154107848
+    },
+    {
+      "date": "2026-03-24",
+      "actual": 222435633
+    },
+    {
+      "date": "2026-03-25",
+      "actual": 198513913
+    },
+    {
+      "date": "2026-03-26",
+      "actual": 69392208
+    },
+    {
+      "date": "2026-03-27",
+      "actual": 69841188
+    },
+    {
+      "date": "2026-03-28",
+      "actual": 298813247
+    },
+    {
+      "date": "2026-03-29",
+      "actual": 239461930
+    },
+    {
+      "date": "2026-03-30",
+      "actual": 126795213
+    },
+    {
+      "date": "2026-03-31",
+      "actual": 168382617
+    },
+    {
+      "date": "2026-04-01",
+      "actual": 138287607
+    },
+    {
+      "date": "2026-04-02",
+      "actual": 128632140
+    },
+    {
+      "date": "2026-04-03",
+      "actual": 31926526
+    },
+    {
+      "date": "2026-04-04",
+      "actual": 146418164
+    },
+    {
+      "date": "2026-04-05",
+      "actual": 143109797
+    },
+    {
+      "date": "2026-04-06",
+      "actual": 135202588
+    },
+    {
+      "date": "2026-04-07",
+      "actual": 141046226
+    },
+    {
+      "date": "2026-04-08",
+      "actual": 107188961
+    },
+    {
+      "date": "2026-04-09",
+      "actual": 150293991
+    },
+    {
+      "date": "2026-04-10",
+      "actual": 29922492
+    },
+    {
+      "date": "2026-04-11",
+      "actual": 26023639
+    },
+    {
+      "date": "2026-04-12",
+      "actual": 208013089
+    },
+    {
+      "date": "2026-04-13",
+      "actual": 167638875
+    },
+    {
+      "date": "2026-04-14",
+      "actual": 113866881
+    },
+    {
+      "date": "2026-04-15",
+      "actual": 386240227
+    },
+    {
+      "date": "2026-04-16",
+      "actual": 141383886
+    },
+    {
+      "date": "2026-04-17",
+      "actual": 105661470
+    },
+    {
+      "date": "2026-04-18",
+      "actual": 85035946
+    },
+    {
+      "date": "2026-04-19",
+      "actual": 113967303
+    },
+    {
+      "date": "2026-04-20",
+      "actual": 107326812
+    },
+    {
+      "date": "2026-04-21",
+      "actual": 85346915
+    },
+    {
+      "date": "2026-04-22",
+      "actual": 10119256
+    },
+    {
+      "date": "2026-04-23",
+      "actual": 115891269
+    },
+    {
+      "date": "2026-04-24",
+      "actual": 88430783
+    },
+    {
+      "date": "2026-04-25",
+      "actual": 173333665
+    },
+    {
+      "date": "2026-04-26",
+      "actual": 121952191
+    },
+    {
+      "date": "2026-04-27",
+      "actual": 170423855
+    },
+    {
+      "date": "2026-04-28",
+      "actual": 248508877
+    },
+    {
+      "date": "2026-04-29",
+      "actual": 158820499
+    },
+    {
+      "date": "2026-04-30",
+      "actual": 110396460
+    },
+    {
+      "date": "2026-05-01",
+      "actual": 111020753
+    },
+    {
+      "date": "2026-05-02",
+      "actual": 111616854
+    },
+    {
+      "date": "2026-05-03",
+      "actual": 246692098
+    },
+    {
+      "date": "2026-05-04",
+      "actual": 163879217
+    },
+    {
+      "date": "2026-05-05",
+      "actual": 227329080
+    },
+    {
+      "date": "2026-05-06",
+      "actual": 112514526
+    },
+    {
+      "date": "2026-05-07",
+      "actual": 217508533
+    },
+    {
+      "date": "2026-05-08",
+      "actual": 207235360
+    },
+    {
+      "date": "2026-05-09",
+      "actual": 153575654
+    },
+    {
+      "date": "2026-05-10",
+      "actual": 250206430
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "-20%",
+      "change_percent": -20,
+      "monthly_total": 5447915836,
+      "vs_last_30d": 20.0
+    },
+    {
+      "label": "-10%",
+      "change_percent": -10,
+      "monthly_total": 6128905316,
+      "vs_last_30d": 35.0
+    },
+    {
+      "label": "-5%",
+      "change_percent": -5,
+      "monthly_total": 6469400055,
+      "vs_last_30d": 42.5
+    },
+    {
+      "label": "Base",
+      "change_percent": 0,
+      "monthly_total": 6809894795,
+      "vs_last_30d": 50.0
+    },
+    {
+      "label": "+5%",
+      "change_percent": 5,
+      "monthly_total": 7150389535,
+      "vs_last_30d": 57.5
+    },
+    {
+      "label": "+10%",
+      "change_percent": 10,
+      "monthly_total": 7490884275,
+      "vs_last_30d": 65.0
+    },
+    {
+      "label": "+20%",
+      "change_percent": 20,
+      "monthly_total": 8171873754,
+      "vs_last_30d": 80.0
+    }
+  ],
+  "by_department": [
+    {
+      "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
+      "last_30d": 331323722.0,
+      "weight": 0.0,
+      "forecast_base": 496982240.0,
+      "forecast_plus10": 546680464.0,
+      "forecast_plus20": 596378688.0,
+      "impact_plus10": 49698224.0,
+      "impact_plus20": 99396448.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Cấp cứu",
+      "last_30d": 439579651.0,
+      "weight": 0.0,
+      "forecast_base": 659365041.0,
+      "forecast_plus10": 725301545.0,
+      "forecast_plus20": 791238049.0,
+      "impact_plus10": 65936504.0,
+      "impact_plus20": 131873008.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Dược",
+      "last_30d": 510164033.0,
+      "weight": 0.0,
+      "forecast_base": 765240902.0,
+      "forecast_plus10": 841764992.0,
+      "forecast_plus20": 918289082.0,
+      "impact_plus10": 76524090.0,
+      "impact_plus20": 153048180.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
+      "last_30d": 540151284.0,
+      "weight": 0.0,
+      "forecast_base": 810221476.0,
+      "forecast_plus10": 891243624.0,
+      "forecast_plus20": 972265771.0,
+      "impact_plus10": 81022148.0,
+      "impact_plus20": 162044295.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Khám bệnh",
+      "last_30d": 471870626.0,
+      "weight": 0.0,
+      "forecast_base": 707801178.0,
+      "forecast_plus10": 778581296.0,
+      "forecast_plus20": 849361414.0,
+      "impact_plus10": 70780118.0,
+      "impact_plus20": 141560236.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Ngoại",
+      "last_30d": 526653921.0,
+      "weight": 0.0,
+      "forecast_base": 789975567.0,
+      "forecast_plus10": 868973124.0,
+      "forecast_plus20": 947970680.0,
+      "impact_plus10": 78997557.0,
+      "impact_plus20": 157995113.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Nhi",
+      "last_30d": 478972810.0,
+      "weight": 0.0,
+      "forecast_base": 718454382.0,
+      "forecast_plus10": 790299820.0,
+      "forecast_plus20": 862145258.0,
+      "impact_plus10": 71845438.0,
+      "impact_plus20": 143690876.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
+      "last_30d": 370586867.0,
+      "weight": 0.0,
+      "forecast_base": 555876561.0,
+      "forecast_plus10": 611464217.0,
+      "forecast_plus20": 667051873.0,
+      "impact_plus10": 55587656.0,
+      "impact_plus20": 111175312.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Sản",
+      "last_30d": 496411117.0,
+      "weight": 0.0,
+      "forecast_base": 744611667.0,
+      "forecast_plus10": 819072834.0,
+      "forecast_plus20": 893534000.0,
+      "impact_plus10": 74461167.0,
+      "impact_plus20": 148922333.0
+    },
+    {
+      "TEN_KHOAPHONG": "Khoa Xét nghiệm",
+      "last_30d": 374246372.0,
+      "weight": 0.0,
+      "forecast_base": 561365782.0,
+      "forecast_plus10": 617502360.0,
+      "forecast_plus20": 673638938.0,
+      "impact_plus10": 56136578.0,
+      "impact_plus20": 112273156.0
+    }
+  ]
+}

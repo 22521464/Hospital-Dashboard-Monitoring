@@ -26,6 +26,15 @@
                     <li>
                         <a href="/data-entry">Nhập viện phí</a>
                     </li>
+                    <li>
+                        <a href="/analysis">Phân tích</a>
+                    </li>
+                    <li>
+                        <a href="/report">Báo cáo</a>
+                    </li>
+                    <li>
+                        <a href="/data-quality">Chất lượng DL</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -43,29 +52,36 @@
                     <h1>Hospital Revenue Monitoring Dashboard</h1>
                     <p id="latestDateText">Ngày dữ liệu gần nhất: --</p>
                 </div>
-
-                <div class="header-actions filter-actions">
-                    <select id="datePreset" class="filter-select">
-                        <option value="today">Hôm nay</option>
-                        <option value="yesterday">Hôm qua</option>
-                        <option value="7days" selected>7 ngày</option>
-                        <option value="30days">30 ngày</option>
-                        <option value="custom">Tùy chỉnh</option>
-                        <option value="all">Tất cả</option>
-                    </select>
-            
-                    <input type="date" id="startDate" class="filter-date" disabled>
-                    <input type="date" id="endDate" class="filter-date" disabled>
-            
-                    <button onclick="loadDashboard()" class="primary-btn">Áp dụng</button>
-                </div>
             </header>
+
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <span class="filter-label">Kỳ báo cáo</span>
+                    <div class="preset-tabs" id="presetTabs">
+                        <button class="preset-tab" data-value="today">Hôm nay</button>
+                        <button class="preset-tab" data-value="yesterday">Hôm qua</button>
+                        <button class="preset-tab active" data-value="7days">7 ngày</button>
+                        <button class="preset-tab" data-value="30days">30 ngày</button>
+                        <button class="preset-tab" data-value="custom">Tùy chỉnh</button>
+                        <button class="preset-tab" data-value="all">Tất cả</button>
+                    </div>
+                    <input type="hidden" id="datePreset" value="7days">
+                </div>
+
+                <div class="filter-custom-range" id="customDateRange">
+                    <span class="filter-label">Từ</span>
+                    <input type="date" id="startDate" class="filter-date">
+                    <span class="filter-range-sep">—</span>
+                    <input type="date" id="endDate" class="filter-date">
+                    <button id="applyFilterBtn" class="primary-btn filter-apply-btn">Áp dụng</button>
+                </div>
+            </div>
 
             <section class="kpi-grid">
                 <div class="kpi-card">
                     <h4>Tổng doanh thu</h4>
                     <div id="kpiTotalRevenue" class="kpi-value">--</div>
-                    <div class="kpi-subtext">Tổng doanh thu toàn hệ thống</div>
+                    <div class="kpi-subtext">Trong kỳ đã chọn</div>
                 </div>
 
                 <div class="kpi-card">
@@ -105,9 +121,9 @@
                 </div>
 
                 <div class="kpi-card">
-                    <h4>Số lượt điều trị</h4>
+                    <h4>Số lượt khám</h4>
                     <div id="kpiTotalTreatments" class="kpi-value">--</div>
-                    <div class="kpi-subtext">Số lượt khám/điều trị</div>
+                    <div class="kpi-subtext">Số lượt khám (unique)</div>
                 </div>
             </section>
 
@@ -124,13 +140,19 @@
                 </div>
 
                 <div class="chart-card">
-                    <h3>Top 5 khoa theo doanh thu</h3>
+                    <h3>Top 5 khoa theo doanh thu (kỳ đã chọn)</h3>
                     <canvas id="topDepartmentChart"></canvas>
                 </div>
 
                 <div class="chart-card">
                     <h3>Doanh thu theo nhóm dịch vụ</h3>
                     <canvas id="serviceGroupChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Cơ cấu theo loại điều trị</h3>
+                    <p class="chart-description">Nội trú / Ngoại trú / Cấp cứu trong kỳ đã chọn.</p>
+                    <canvas id="treatmentTypeChart"></canvas>
                 </div>
             </section>
 
@@ -164,7 +186,7 @@
                             <thead>
                                 <tr>
                                     <th>Khoa/phòng</th>
-                                    <th>Hôm nay</th>
+                                    <th>Ngày gần nhất</th>
                                     <th>TB 7 ngày</th>
                                     <th>Biến động</th>
                                     <th>Trạng thái</th>
@@ -186,7 +208,7 @@
                             <thead>
                                 <tr>
                                     <th>Nhóm dịch vụ</th>
-                                    <th>Hôm nay</th>
+                                    <th>Ngày gần nhất</th>
                                     <th>TB 7 ngày</th>
                                     <th>Biến động</th>
                                     <th>Trạng thái</th>
@@ -237,6 +259,11 @@
                         <div class="quality-item quality-total">
                             <span>Tổng vấn đề</span>
                             <strong id="dqTotalIssues">--</strong>
+                        </div>
+
+                        <div class="quality-item quality-score">
+                            <span>Quality Score</span>
+                            <strong id="dqQualityScore">--</strong>
                         </div>
                     </div>
                 </div>

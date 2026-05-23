@@ -1,3 +1,5 @@
+import os
+import json
 import sqlite3
 import random
 import pandas as pd
@@ -5,7 +7,7 @@ from datetime import datetime, timedelta
 from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
 
-DB_PATH = "hospital.db"
+DB_PATH = os.path.join(os.path.dirname(__file__), "hospital.db")
 
 app = Flask(__name__, static_folder="../frontend")
 CORS(app)
@@ -137,25 +139,41 @@ def calculate_data_quality(df):
     if df.empty:
         return {
             "total_rows": 0,
+            "missing_ngay": 0,
             "missing_khoaphong": 0,
             "missing_dichvu": 0,
             "missing_doituong": 0,
             "negative_thanhtien": 0,
+            "zero_revenue": 0,
+            "unmapped_khoa": 0,
+            "unmapped_dichvu": 0,
+            "unmapped_doituong": 0,
+            "unmapped_total": 0,
             "total_issues": 0,
             "quality_score": 100
         }
 
     total_rows = len(df)
+    missing_ngay = int(df["NGAY"].isnull().sum())
     missing_khoaphong = int(df["ID_KHOAPHONG"].isnull().sum())
     missing_dichvu = int(df["ID_DICHVU"].isnull().sum())
     missing_doituong = int(df["ID_DOITUONG"].isnull().sum())
     negative_thanhtien = int((df["THANHTIEN"] < 0).sum())
+    zero_revenue = int((df["THANHTIEN"] == 0).sum())
+
+    unmapped_khoa = int((df["ID_KHOAPHONG"].notna() & df["TEN_KHOAPHONG"].isna()).sum())
+    unmapped_dichvu_count = int((df["ID_DICHVU"].notna() & df["TEN_DICHVU"].isna()).sum())
+    unmapped_doituong = int((df["ID_DOITUONG"].notna() & df["TEN_DOITUONG"].isna()).sum())
+    unmapped_total = unmapped_khoa + unmapped_dichvu_count + unmapped_doituong
 
     total_issues = (
+        missing_ngay +
         missing_khoaphong +
         missing_dichvu +
         missing_doituong +
-        negative_thanhtien
+        negative_thanhtien +
+        zero_revenue +
+        unmapped_total
     )
 
     if total_rows > 0:
@@ -165,10 +183,16 @@ def calculate_data_quality(df):
 
     return {
         "total_rows": total_rows,
+        "missing_ngay": missing_ngay,
         "missing_khoaphong": missing_khoaphong,
         "missing_dichvu": missing_dichvu,
         "missing_doituong": missing_doituong,
         "negative_thanhtien": negative_thanhtien,
+        "zero_revenue": zero_revenue,
+        "unmapped_khoa": unmapped_khoa,
+        "unmapped_dichvu": unmapped_dichvu_count,
+        "unmapped_doituong": unmapped_doituong,
+        "unmapped_total": unmapped_total,
         "total_issues": total_issues,
         "quality_score": round(quality_score, 2)
     }
@@ -735,6 +759,7 @@ def revenue_daily_monitor():
 @app.route("/api/alerts")
 def alerts():
     df = get_full_data()
+    df = apply_date_filter(df)
 
     if df.empty:
         return jsonify([])
@@ -1037,6 +1062,10 @@ def revenue_by_treatment_type():
         axis=1
     )
     result = result.sort_values("THANHTIEN", ascending=False)
+
+    total = result["THANHTIEN"].sum()
+    result["PHAN_TRAM"] = (result["THANHTIEN"] / total * 100).round(1) if total > 0 else 0
+
     return jsonify(result.to_dict(orient="records"))
 
 
@@ -1081,6 +1110,8 @@ def revenue_by_service_group():
         .reset_index()
     )
     return jsonify(result.to_dict(orient="records"))
+
+
 
 
 @app.route("/api/data-quality")
@@ -1131,6 +1162,110 @@ def recent_transactions():
 @app.route('/<path:filename>')
 def serve_static(filename):
     return send_from_directory('../frontend', filename)
+
+
+# =====================================================
+# Analysis page & API
+# =====================================================
+
+ANALYSIS_OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "analysis_output")
+
+
+@app.route("/analysis")
+def serve_analysis():
+    return send_from_directory(app.static_folder, "analysis.html")
+
+
+def _load_analysis_json(filename):
+    path = os.path.join(ANALYSIS_OUTPUT_DIR, filename)
+    if not os.path.exists(path):
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@app.route("/api/analysis/status")
+def analysis_status():
+    files = {
+        "descriptive_stats": "descriptive_stats.json",
+        "correlation_matrix": "correlation_matrix.json",
+        "trend_analysis": "trend_analysis.json",
+        "forecast": "forecast.json",
+        "report": "report.json",
+        "data_quality_report": "data_quality_report.json",
+    }
+    status = {}
+    for key, fname in files.items():
+        path = os.path.join(ANALYSIS_OUTPUT_DIR, fname)
+        if os.path.exists(path):
+            mtime = os.path.getmtime(path)
+            status[key] = {
+                "exists": True,
+                "last_updated": datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M:%S"),
+            }
+        else:
+            status[key] = {"exists": False, "last_updated": None}
+    return jsonify(status)
+
+
+@app.route("/api/analysis/descriptive-stats")
+def analysis_descriptive_stats():
+    data = _load_analysis_json("descriptive_stats.json")
+    if data is None:
+        return jsonify({"error": "Chưa có dữ liệu. Hãy chạy notebook revenue_analysis.ipynb trước."}), 404
+    return jsonify(data)
+
+
+@app.route("/api/analysis/correlation")
+def analysis_correlation():
+    data = _load_analysis_json("correlation_matrix.json")
+    if data is None:
+        return jsonify({"error": "Chưa có dữ liệu. Hãy chạy notebook revenue_analysis.ipynb trước."}), 404
+    return jsonify(data)
+
+
+@app.route("/api/analysis/trend")
+def analysis_trend():
+    data = _load_analysis_json("trend_analysis.json")
+    if data is None:
+        return jsonify({"error": "Chưa có dữ liệu. Hãy chạy notebook revenue_analysis.ipynb trước."}), 404
+    return jsonify(data)
+
+
+@app.route("/api/analysis/forecast")
+def analysis_forecast():
+    data = _load_analysis_json("forecast.json")
+    if data is None:
+        return jsonify({"error": "Chưa có dữ liệu. Hãy chạy notebook forecasting.ipynb trước."}), 404
+    return jsonify(data)
+
+
+@app.route("/data-quality")
+def serve_data_quality():
+    return send_from_directory(app.static_folder, "data_quality.html")
+
+
+@app.route("/api/analysis/data-quality-report")
+def analysis_data_quality_report():
+    data = _load_analysis_json("data_quality_report.json")
+    if data is None:
+        return jsonify({"error": "Chưa có dữ liệu. Hãy chạy notebook data_quality.ipynb trước."}), 404
+    return jsonify(data)
+
+
+@app.route("/report")
+def serve_report():
+    return send_from_directory(app.static_folder, "report.html")
+
+
+@app.route("/api/analysis/report")
+def analysis_report():
+    data = _load_analysis_json("report.json")
+    if data is None:
+        return jsonify({"error": "Chưa có dữ liệu. Hãy chạy notebook report.ipynb trước."}), 404
+    return jsonify(data)
+
+
 # =====================================================
 # Run app
 # =====================================================
