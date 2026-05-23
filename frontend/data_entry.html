@@ -145,17 +145,21 @@
                         <div class="form-actions">
                             <button type="submit" class="primary-btn">Lưu giao dịch</button>
                             <button type="reset" class="secondary-btn">Xóa form</button>
-                            <input 
-                                type="number" 
-                                id="sampleCount" 
-                                class="small-input" 
-                                min="1" 
-                                max="300" 
+                            <input
+                                type="number"
+                                id="sampleCount"
+                                class="small-input"
+                                min="1"
+                                max="300"
                                 value="100"
                             >
                             <button type="button" id="generateSampleBtn" class="secondary-btn">
                                 Tạo giao dịch mẫu
                             </button>
+                            <label class="dirty-toggle" title="Thêm ~4% bản ghi lỗi để test Data Quality Monitor">
+                                <input type="checkbox" id="includeDirty">
+                                Thêm lỗi DL mẫu
+                            </label>
                         </div>
                     </form>
 

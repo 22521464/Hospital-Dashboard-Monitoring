@@ -108,6 +108,38 @@ async function loadDescriptive() {
         },
     });
 
+    // Department share doughnut (live from DB, not notebook)
+    try {
+        const deptRaw = await fetchJSON(`${API_BASE}/api/revenue-by-department`);
+        destroyChart("descDeptShare");
+        chartInstances["descDeptShare"] = new Chart(document.getElementById("descDeptShareChart"), {
+            type: "doughnut",
+            data: {
+                labels: deptRaw.map((d) => d.TEN_KHOAPHONG ?? "(Không rõ)"),
+                datasets: [{
+                    data: deptRaw.map((d) => d.THANHTIEN),
+                    backgroundColor: deptRaw.map((_, i) =>
+                        `hsl(${(i * 37 + 200) % 360}, 60%, 52%)`
+                    ),
+                }],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: "right" },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const pct = deptRaw[ctx.dataIndex]?.PHAN_TRAM ?? 0;
+                                return `${ctx.label}: ${formatVND(ctx.raw)} (${pct}%)`;
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    } catch (_) { /* bỏ qua nếu API lỗi */ }
+
     // Day of week bar
     const dow = data.by_day_of_week || [];
     const viNames = {
@@ -335,6 +367,118 @@ async function loadTrend() {
     });
 }
 
+// ── Quarterly & Yearly (live from DB) ────────────────────────────────────────
+async function loadQuarterly() {
+    const data = await fetchJSON(`${API_BASE}/api/revenue-quarterly`);
+    if (!data.length) return;
+
+    destroyChart("trendQuarterly");
+    chartInstances["trendQuarterly"] = new Chart(document.getElementById("trendQuarterlyChart"), {
+        type: "bar",
+        data: {
+            labels: data.map((q) => q.QUY_NAM),
+            datasets: [
+                {
+                    label: "Doanh thu",
+                    data: data.map((q) => q.THANHTIEN),
+                    backgroundColor: "rgba(25, 118, 210, 0.75)",
+                    yAxisID: "yRevenue",
+                },
+                {
+                    label: "Tăng trưởng QoQ (%)",
+                    type: "line",
+                    data: data.map((q) => q.GROWTH),
+                    borderColor: "#fb8c00",
+                    backgroundColor: "transparent",
+                    pointRadius: 5,
+                    borderWidth: 2,
+                    yAxisID: "yGrowth",
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => {
+                            if (ctx.datasetIndex === 0) {
+                                const pct = data[ctx.dataIndex]?.PHAN_TRAM ?? 0;
+                                return `Doanh thu: ${formatVND(ctx.raw)} (${pct}% tổng)`;
+                            }
+                            return ctx.raw != null ? `Tăng trưởng QoQ: ${formatPercent(ctx.raw)}` : "Tăng trưởng QoQ: --";
+                        },
+                    },
+                },
+            },
+            scales: {
+                yRevenue: { position: "left",  ticks: { callback: (v) => formatVND(v) } },
+                yGrowth:  { position: "right", grid: { drawOnChartArea: false },
+                            ticks: { callback: (v) => `${v != null ? v.toFixed(1) : "--"}%` } },
+            },
+        },
+    });
+}
+
+async function loadYearly() {
+    const data = await fetchJSON(`${API_BASE}/api/revenue-yearly`);
+    const card = document.getElementById("trendYearlyCard");
+
+    if (!data.length) {
+        if (card) card.style.display = "none";
+        return;
+    }
+
+    if (data.length < 2 && card) {
+        card.querySelector("p.chart-description").textContent =
+            "Cần ít nhất 2 năm dữ liệu để so sánh YoY. Hiện đang hiển thị doanh thu theo năm.";
+    }
+
+    destroyChart("trendYearly");
+    chartInstances["trendYearly"] = new Chart(document.getElementById("trendYearlyChart"), {
+        type: "bar",
+        data: {
+            labels: data.map((y) => String(y.NAM)),
+            datasets: [
+                {
+                    label: "Doanh thu",
+                    data: data.map((y) => y.THANHTIEN),
+                    backgroundColor: "rgba(67, 160, 71, 0.75)",
+                    yAxisID: "yRevenue",
+                },
+                {
+                    label: "Tăng trưởng YoY (%)",
+                    type: "line",
+                    data: data.map((y) => y.YOY),
+                    borderColor: "#e53935",
+                    backgroundColor: "transparent",
+                    pointRadius: 5,
+                    borderWidth: 2,
+                    yAxisID: "yGrowth",
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => {
+                            if (ctx.datasetIndex === 0) return `Doanh thu: ${formatVND(ctx.raw)}`;
+                            return ctx.raw != null ? `Tăng trưởng YoY: ${formatPercent(ctx.raw)}` : "Tăng trưởng YoY: --";
+                        },
+                    },
+                },
+            },
+            scales: {
+                yRevenue: { position: "left",  ticks: { callback: (v) => formatVND(v) } },
+                yGrowth:  { position: "right", grid: { drawOnChartArea: false },
+                            ticks: { callback: (v) => `${v != null ? v.toFixed(1) : "--"}%` } },
+            },
+        },
+    });
+}
+
 // ── Section: Forecast ────────────────────────────────────────────────────────
 async function loadForecast() {
     const data = await fetchJSON(`${API_BASE}/api/analysis/forecast`);
@@ -484,7 +628,14 @@ async function loadAnalysis() {
     if (!ready) return;
 
     try {
-        await Promise.all([loadForecast(), loadDescriptive(), loadCorrelation(), loadTrend()]);
+        await Promise.all([
+            loadForecast(),
+            loadDescriptive(),
+            loadCorrelation(),
+            loadTrend(),
+            loadQuarterly(),
+            loadYearly(),
+        ]);
     } catch (err) {
         console.error("Lỗi tải phân tích:", err);
     }

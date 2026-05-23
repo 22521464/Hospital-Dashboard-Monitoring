@@ -370,6 +370,8 @@ def generate_sample_transactions():
     data = request.get_json() or {}
     count = int(data.get("count", random.randint(50, 100)))
     ngay = data.get("ngay")
+    dirty_rate = float(data.get("dirty_rate", 0.0))
+    dirty_rate = max(0.0, min(dirty_rate, 0.30))  # clamp 0–30%
 
     if count < 1:
         count = 1
@@ -450,6 +452,11 @@ def generate_sample_transactions():
     }
 
     inserted = 0
+    dirty_count = 0
+
+    # Issue types injected when dirty_rate > 0
+    _dirty_types   = ["null_khoa", "null_dichvu", "null_doituong", "zero_rev", "neg_rev", "unmapped_khoa"]
+    _dirty_weights = [25, 20, 20, 20, 10, 5]
 
     for _ in range(count):
         random_patient_number = random.randint(10000, 99999)
@@ -500,6 +507,27 @@ def generate_sample_transactions():
 
         bhyttra = thanhtien * ty_le_bhyt / 100
         nguoibenhtra = thanhtien - bhyttra
+
+        # Inject a data quality issue with probability dirty_rate
+        if dirty_rate > 0 and random.random() < dirty_rate:
+            issue = random.choices(_dirty_types, weights=_dirty_weights)[0]
+            if issue == "null_khoa":
+                id_khoaphong = None
+            elif issue == "null_dichvu":
+                id_dichvu = None
+            elif issue == "null_doituong":
+                id_doituong = None
+            elif issue == "zero_rev":
+                dongia = 0
+                thanhtien = 0
+                bhyttra = 0
+                nguoibenhtra = 0
+            elif issue == "neg_rev":
+                thanhtien = -abs(thanhtien)
+                nguoibenhtra = -abs(nguoibenhtra)
+            elif issue == "unmapped_khoa":
+                id_khoaphong = 9999  # non-existent in DIM_KHOAPHONG
+            dirty_count += 1
 
         cursor.execute(
             """
@@ -554,11 +582,16 @@ def generate_sample_transactions():
     conn.commit()
     conn.close()
 
+    msg = f"Đã tạo {inserted} giao dịch mẫu cho ngày {ngay}."
+    if dirty_count:
+        msg += f" (gồm {dirty_count} bản ghi lỗi mô phỏng)"
+
     return jsonify(
         {
             "success": True,
-            "message": f"Đã tạo {inserted} giao dịch mẫu cho ngày {ngay}.",
+            "message": msg,
             "inserted": inserted,
+            "dirty_count": dirty_count,
             "date": ngay,
         }
     )
@@ -1092,6 +1125,59 @@ def revenue_by_department():
 
     result = df.groupby("TEN_KHOAPHONG")["THANHTIEN"].sum().reset_index()
     result = result.sort_values("THANHTIEN", ascending=False)
+
+    total = result["THANHTIEN"].sum()
+    result["PHAN_TRAM"] = (result["THANHTIEN"] / total * 100).round(1) if total > 0 else 0
+
+    return jsonify(result.to_dict(orient="records"))
+
+
+@app.route("/api/revenue-quarterly")
+def revenue_quarterly():
+    df = get_full_data()
+
+    if df.empty:
+        return jsonify([])
+
+    df["QUY"] = df["NGAY"].dt.quarter
+    df["NAM"] = df["NGAY"].dt.year
+    df["QUY_NAM"] = "Q" + df["QUY"].astype(str) + "/" + df["NAM"].astype(str)
+
+    result = (
+        df.groupby(["NAM", "QUY", "QUY_NAM"])["THANHTIEN"]
+        .sum()
+        .reset_index()
+        .sort_values(["NAM", "QUY"])
+    )
+
+    result["GROWTH"] = result["THANHTIEN"].pct_change() * 100
+    result["GROWTH"] = result["GROWTH"].round(1)
+
+    total = result["THANHTIEN"].sum()
+    result["PHAN_TRAM"] = (result["THANHTIEN"] / total * 100).round(1) if total > 0 else 0
+
+    return jsonify(result.to_dict(orient="records"))
+
+
+@app.route("/api/revenue-yearly")
+def revenue_yearly():
+    df = get_full_data()
+
+    if df.empty:
+        return jsonify([])
+
+    df["NAM"] = df["NGAY"].dt.year
+
+    result = (
+        df.groupby("NAM")["THANHTIEN"]
+        .sum()
+        .reset_index()
+        .sort_values("NAM")
+    )
+
+    result["YOY"] = result["THANHTIEN"].pct_change() * 100
+    result["YOY"] = result["YOY"].round(1)
+
     return jsonify(result.to_dict(orient="records"))
 
 

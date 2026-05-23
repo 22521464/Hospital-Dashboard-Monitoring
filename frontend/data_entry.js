@@ -235,7 +235,11 @@ async function generateSampleTransactions() {
         return;
     }
 
-    const confirmed = confirm(`Bạn có chắc muốn tạo ${count} giao dịch mẫu cho ngày ${ngay}?`);
+    const includeDirty = document.getElementById("includeDirty")?.checked ?? false;
+    const dirtyRate = includeDirty ? 0.04 : 0;
+    const dirtyNote = includeDirty ? " (gồm ~4% bản ghi lỗi mô phỏng)" : "";
+
+    const confirmed = confirm(`Bạn có chắc muốn tạo ${count} giao dịch mẫu cho ngày ${ngay}${dirtyNote}?`);
     if (!confirmed) {
         return;
     }
@@ -250,7 +254,8 @@ async function generateSampleTransactions() {
             },
             body: JSON.stringify({
                 count,
-                ngay
+                ngay,
+                dirty_rate: dirtyRate
             })
         });
 

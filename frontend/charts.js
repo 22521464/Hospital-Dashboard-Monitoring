@@ -231,8 +231,9 @@ async function loadTopDepartmentChart() {
     const rawData = await fetchJSON(apiUrl("/api/revenue-by-department"));
     const data = rawData.slice(0, 5);
 
-    const labels = data.map(item => item.TEN_KHOAPHONG);
-    const values = data.map(item => item.THANHTIEN);
+    const labels   = data.map(item => item.TEN_KHOAPHONG);
+    const values   = data.map(item => item.THANHTIEN);
+    const percents = data.map(item => item.PHAN_TRAM ?? 0);
 
     destroyChart(topDepartmentChart);
 
@@ -253,7 +254,8 @@ async function loadTopDepartmentChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return formatVND(context.raw);
+                            const i = context.dataIndex;
+                            return `${formatVND(context.raw)}  (${percents[i]}%)`;
                         }
                     }
                 }
@@ -318,9 +320,11 @@ async function loadServiceGroupChart() {
 async function loadTreatmentTypeChart() {
     const data = await fetchJSON(apiUrl("/api/revenue-by-treatment-type"));
 
-    const labels = data.map(item => item.TEN_LOAI_DIEUTRI ?? "(Không rõ)");
-    const values = data.map(item => item.THANHTIEN);
-    const percents = data.map(item => item.PHAN_TRAM);
+    const labels   = data.map(item => item.TEN_LOAI_DIEUTRI ?? "(Không rõ)");
+    const values   = data.map(item => item.THANHTIEN);
+    const percents = data.map(item => item.PHAN_TRAM ?? 0);
+    const soLuots  = data.map(item => item.SO_LUOT ?? 0);
+    const avgRevs  = data.map(item => item.DOANH_THU_TRUNG_BINH ?? 0);
 
     destroyChart(treatmentTypeChart);
 
@@ -344,8 +348,12 @@ async function loadTreatmentTypeChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            const pct = percents[context.dataIndex];
-                            return `${formatVND(context.raw)}  (${pct}%)`;
+                            const i = context.dataIndex;
+                            return [
+                                `Doanh thu: ${formatVND(values[i])} (${percents[i]}%)`,
+                                `Số lượt khám: ${soLuots[i].toLocaleString("vi-VN")}`,
+                                `TB/lượt khám: ${formatVND(avgRevs[i])}`
+                            ];
                         }
                     }
                 }
@@ -353,11 +361,7 @@ async function loadTreatmentTypeChart() {
             scales: {
                 x: {
                     beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return formatVND(value);
-                        }
-                    }
+                    ticks: { callback: (v) => formatVND(v) }
                 }
             }
         }
@@ -460,9 +464,12 @@ async function loadDataQuality() {
     const totalIssues = data.total_issues ?? 0;
     const qualityScore = data.quality_score ?? null;
 
+    const missingPayment = data.missing_doituong ?? 0;
+
     setText("dqMissingDate", missingDate);
     setText("dqMissingService", missingService);
     setText("dqMissingDepartment", missingDepartment);
+    setText("dqMissingPayment", missingPayment);
     setText("dqNegativeRevenue", negativeRevenue);
     setText("dqZeroRevenue", zeroRevenue);
     setText("dqUnmapped", unmapped);

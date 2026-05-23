@@ -172,6 +172,11 @@
                         <h3>Cơ cấu doanh thu theo nhóm dịch vụ</h3>
                         <canvas id="descServiceChart"></canvas>
                     </div>
+                    <div class="chart-card">
+                        <h3>Cơ cấu % đóng góp theo khoa/phòng</h3>
+                        <p class="chart-description">Tỷ trọng doanh thu từng khoa trên tổng toàn viện (toàn thời gian).</p>
+                        <canvas id="descDeptShareChart"></canvas>
+                    </div>
                     <div class="chart-card chart-wide">
                         <h3>Doanh thu trung bình theo ngày trong tuần</h3>
                         <canvas id="descDowChart"></canvas>
@@ -230,6 +235,16 @@
                         <h3>STL Decomposition — Xu hướng dài hạn</h3>
                         <p class="chart-description">Tách doanh thu thành: Trend (xu hướng) + Seasonal (mùa vụ 7 ngày) + Residual (nhiễu).</p>
                         <canvas id="trendDecompChart"></canvas>
+                    </div>
+                    <div class="chart-card chart-wide">
+                        <h3>Doanh thu theo quý & tăng trưởng QoQ</h3>
+                        <p class="chart-description">Tổng doanh thu từng quý và tỷ lệ tăng trưởng so với quý trước.</p>
+                        <canvas id="trendQuarterlyChart"></canvas>
+                    </div>
+                    <div class="chart-card chart-wide" id="trendYearlyCard">
+                        <h3>Doanh thu theo năm & tăng trưởng YoY</h3>
+                        <p class="chart-description">Tổng doanh thu từng năm và tỷ lệ tăng trưởng so với năm trước.</p>
+                        <canvas id="trendYearlyChart"></canvas>
                     </div>
                 </div>
             </section>
