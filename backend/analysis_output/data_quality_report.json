@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-24T03:28:36.591226",
-  "total_records": 7233,
-  "quality_score": 92.0,
+  "generated_at": "2026-06-07T14:07:55.818280",
+  "total_records": 20000,
+  "quality_score": 92.1,
   "summary": {
-    "total_missing": 0,
-    "total_outliers": 1153,
-    "total_duplicates": 3,
-    "total_invalid": 0
+    "total_missing": 3,
+    "total_outliers": 3121,
+    "total_duplicates": 10,
+    "total_invalid": 2
   },
   "missing_by_column": [
     {
@@ -18,14 +18,14 @@
     {
       "column": "ID_DICHVU",
       "label": "Dịch vụ",
-      "n_missing": 0,
-      "pct": 0.0
+      "n_missing": 1,
+      "pct": 0.01
     },
     {
       "column": "ID_DOITUONG",
       "label": "Đối tượng TT",
-      "n_missing": 0,
-      "pct": 0.0
+      "n_missing": 2,
+      "pct": 0.01
     },
     {
       "column": "ID_BENHNHAN",
@@ -41,6 +41,62 @@
     }
   ],
   "missing_trend": [
+    {
+      "THANG_NAM": "2023-01",
+      "total": 2087,
+      "missing_khoaphong": 0,
+      "missing_dichvu": 0,
+      "missing_doituong": 0,
+      "pct_missing": 0.0
+    },
+    {
+      "THANG_NAM": "2023-02",
+      "total": 1796,
+      "missing_khoaphong": 0,
+      "missing_dichvu": 0,
+      "missing_doituong": 0,
+      "pct_missing": 0.0
+    },
+    {
+      "THANG_NAM": "2023-03",
+      "total": 1997,
+      "missing_khoaphong": 0,
+      "missing_dichvu": 0,
+      "missing_doituong": 0,
+      "pct_missing": 0.0
+    },
+    {
+      "THANG_NAM": "2023-04",
+      "total": 1908,
+      "missing_khoaphong": 0,
+      "missing_dichvu": 0,
+      "missing_doituong": 0,
+      "pct_missing": 0.0
+    },
+    {
+      "THANG_NAM": "2023-05",
+      "total": 1941,
+      "missing_khoaphong": 0,
+      "missing_dichvu": 0,
+      "missing_doituong": 0,
+      "pct_missing": 0.0
+    },
+    {
+      "THANG_NAM": "2023-06",
+      "total": 1846,
+      "missing_khoaphong": 0,
+      "missing_dichvu": 0,
+      "missing_doituong": 0,
+      "pct_missing": 0.0
+    },
+    {
+      "THANG_NAM": "2023-07",
+      "total": 1062,
+      "missing_khoaphong": 0,
+      "missing_dichvu": 0,
+      "missing_doituong": 0,
+      "pct_missing": 0.0
+    },
     {
       "THANG_NAM": "2026-01",
       "total": 1493,
@@ -75,18 +131,18 @@
     },
     {
       "THANG_NAM": "2026-05",
-      "total": 861,
+      "total": 991,
       "missing_khoaphong": 0,
-      "missing_dichvu": 0,
-      "missing_doituong": 0,
-      "pct_missing": 0.0
+      "missing_dichvu": 1,
+      "missing_doituong": 2,
+      "pct_missing": 0.3
     }
   ],
   "outliers": {
-    "iqr_lower": -1328590.0,
-    "iqr_upper": 2940194.0,
-    "count": 1153,
-    "pct": 15.94,
+    "iqr_lower": -1280200.0,
+    "iqr_upper": 2855769.0,
+    "count": 3121,
+    "pct": 15.6,
     "samples": [
       {
         "ID": 6885,
@@ -95,7 +151,7 @@
         "TEN_KHOAPHONG": "Khoa Khám bệnh",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 30567927.0,
-        "ZSCORE": 5.44
+        "ZSCORE": 5.5
       },
       {
         "ID": 6907,
@@ -104,7 +160,7 @@
         "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29447112.0,
-        "ZSCORE": 5.23
+        "ZSCORE": 5.28
       },
       {
         "ID": 6872,
@@ -113,7 +169,7 @@
         "TEN_KHOAPHONG": "Khoa Ngoại",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29346150.0,
-        "ZSCORE": 5.21
+        "ZSCORE": 5.26
       },
       {
         "ID": 1023,
@@ -122,7 +178,7 @@
         "TEN_KHOAPHONG": "Khoa Ngoại",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29301443.0,
-        "ZSCORE": 5.2
+        "ZSCORE": 5.25
       },
       {
         "ID": 6044,
@@ -131,7 +187,25 @@
         "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29299578.0,
-        "ZSCORE": 5.2
+        "ZSCORE": 5.25
+      },
+      {
+        "ID": 17721,
+        "NGAY": "2023-06-12",
+        "ID_BENHNHAN": "BN00441",
+        "TEN_KHOAPHONG": "Khoa Ngoại",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29294914.0,
+        "ZSCORE": 5.25
+      },
+      {
+        "ID": 9970,
+        "NGAY": "2023-02-09",
+        "ID_BENHNHAN": "BN00238",
+        "TEN_KHOAPHONG": "Khoa Khám bệnh",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29284953.0,
+        "ZSCORE": 5.25
       },
       {
         "ID": 1375,
@@ -140,7 +214,7 @@
         "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29278815.0,
-        "ZSCORE": 5.19
+        "ZSCORE": 5.25
       },
       {
         "ID": 543,
@@ -149,7 +223,7 @@
         "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29270577.0,
-        "ZSCORE": 5.19
+        "ZSCORE": 5.25
       },
       {
         "ID": 5194,
@@ -158,7 +232,34 @@
         "TEN_KHOAPHONG": "Khoa Nhi",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29267482.0,
-        "ZSCORE": 5.19
+        "ZSCORE": 5.25
+      },
+      {
+        "ID": 15090,
+        "NGAY": "2023-04-30",
+        "ID_BENHNHAN": "BN00447",
+        "TEN_KHOAPHONG": "Khoa Ngoại",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29238924.0,
+        "ZSCORE": 5.24
+      },
+      {
+        "ID": 19093,
+        "NGAY": "2023-07-03",
+        "ID_BENHNHAN": "BN00048",
+        "TEN_KHOAPHONG": "Khoa Ngoại",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29232826.0,
+        "ZSCORE": 5.24
+      },
+      {
+        "ID": 11310,
+        "NGAY": "2023-03-02",
+        "ID_BENHNHAN": "BN00286",
+        "TEN_KHOAPHONG": "Khoa Dược",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29231914.0,
+        "ZSCORE": 5.24
       },
       {
         "ID": 4112,
@@ -167,7 +268,16 @@
         "TEN_KHOAPHONG": "Khoa Dược",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29219492.0,
-        "ZSCORE": 5.18
+        "ZSCORE": 5.24
+      },
+      {
+        "ID": 13586,
+        "NGAY": "2023-04-06",
+        "ID_BENHNHAN": "BN00238",
+        "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29215701.0,
+        "ZSCORE": 5.24
       },
       {
         "ID": 522,
@@ -176,7 +286,25 @@
         "TEN_KHOAPHONG": "Khoa Cấp cứu",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29210989.0,
-        "ZSCORE": 5.18
+        "ZSCORE": 5.24
+      },
+      {
+        "ID": 13857,
+        "NGAY": "2023-04-10",
+        "ID_BENHNHAN": "BN00091",
+        "TEN_KHOAPHONG": "Khoa Xét nghiệm",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29207169.0,
+        "ZSCORE": 5.24
+      },
+      {
+        "ID": 15168,
+        "NGAY": "2023-05-01",
+        "ID_BENHNHAN": "BN00110",
+        "TEN_KHOAPHONG": "Khoa Dược",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "THANHTIEN": 29204438.0,
+        "ZSCORE": 5.24
       },
       {
         "ID": 4089,
@@ -185,95 +313,149 @@
         "TEN_KHOAPHONG": "Khoa Xét nghiệm",
         "TEN_DICHVU": "Phẫu thuật loại 1",
         "THANHTIEN": 29202411.0,
-        "ZSCORE": 5.18
+        "ZSCORE": 5.23
       },
       {
-        "ID": 2529,
-        "NGAY": "2026-02-19",
-        "ID_BENHNHAN": "BN00070",
-        "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 29119950.0,
-        "ZSCORE": 5.16
-      },
-      {
-        "ID": 4899,
-        "NGAY": "2026-04-05",
-        "ID_BENHNHAN": "BN00258",
+        "ID": 19286,
+        "NGAY": "2023-07-06",
+        "ID_BENHNHAN": "BN00164",
         "TEN_KHOAPHONG": "Khoa Sản",
         "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 29020145.0,
-        "ZSCORE": 5.14
-      },
-      {
-        "ID": 4290,
-        "NGAY": "2026-03-26",
-        "ID_BENHNHAN": "BN00064",
-        "TEN_KHOAPHONG": "Khoa Dược",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 29016745.0,
-        "ZSCORE": 5.14
-      },
-      {
-        "ID": 4980,
-        "NGAY": "2026-04-07",
-        "ID_BENHNHAN": "BN00014",
-        "TEN_KHOAPHONG": "Khoa Khám bệnh",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 29003523.0,
-        "ZSCORE": 5.14
-      },
-      {
-        "ID": 4118,
-        "NGAY": "2026-03-23",
-        "ID_BENHNHAN": "BN00129",
-        "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 28983812.0,
-        "ZSCORE": 5.14
-      },
-      {
-        "ID": 4452,
-        "NGAY": "2026-03-28",
-        "ID_BENHNHAN": "BN00206",
-        "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 28981454.0,
-        "ZSCORE": 5.14
-      },
-      {
-        "ID": 6458,
-        "NGAY": "2026-05-02",
-        "ID_BENHNHAN": "BN00074",
-        "TEN_KHOAPHONG": "Khoa Dược",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 28942726.0,
-        "ZSCORE": 5.13
-      },
-      {
-        "ID": 783,
-        "NGAY": "2026-01-16",
-        "ID_BENHNHAN": "BN00265",
-        "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 28930407.0,
-        "ZSCORE": 5.13
-      },
-      {
-        "ID": 2403,
-        "NGAY": "2026-02-17",
-        "ID_BENHNHAN": "BN00038",
-        "TEN_KHOAPHONG": "Khoa Khám bệnh",
-        "TEN_DICHVU": "Phẫu thuật loại 1",
-        "THANHTIEN": 28894894.0,
-        "ZSCORE": 5.12
+        "THANHTIEN": 29195944.0,
+        "ZSCORE": 5.23
       }
     ]
   },
   "duplicates": {
-    "count": 3,
-    "pct": 0.04,
+    "count": 10,
+    "pct": 0.05,
     "samples": [
+      {
+        "ID": 7600,
+        "NGAY": "2023-01-04",
+        "ID_BENHNHAN": "BN00033",
+        "TEN_KHOAPHONG": "Khoa Khám bệnh",
+        "TEN_DICHVU": "Thuốc điều trị",
+        "SOLUONG": 1,
+        "THANHTIEN": 316523.0
+      },
+      {
+        "ID": 7654,
+        "NGAY": "2023-01-04",
+        "ID_BENHNHAN": "BN00033",
+        "TEN_KHOAPHONG": "Khoa Khám bệnh",
+        "TEN_DICHVU": "Thuốc điều trị",
+        "SOLUONG": 1,
+        "THANHTIEN": 287944.0
+      },
+      {
+        "ID": 9119,
+        "NGAY": "2023-01-28",
+        "ID_BENHNHAN": "BN00215",
+        "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "SOLUONG": 1,
+        "THANHTIEN": 8576606.0
+      },
+      {
+        "ID": 9129,
+        "NGAY": "2023-01-28",
+        "ID_BENHNHAN": "BN00215",
+        "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
+        "TEN_DICHVU": "Phẫu thuật loại 1",
+        "SOLUONG": 3,
+        "THANHTIEN": 23969657.0
+      },
+      {
+        "ID": 9420,
+        "NGAY": "2023-01-31",
+        "ID_BENHNHAN": "BN00270",
+        "TEN_KHOAPHONG": "Khoa Cấp cứu",
+        "TEN_DICHVU": "Xét nghiệm máu",
+        "SOLUONG": 3,
+        "THANHTIEN": 357905.0
+      },
+      {
+        "ID": 9426,
+        "NGAY": "2023-01-31",
+        "ID_BENHNHAN": "BN00270",
+        "TEN_KHOAPHONG": "Khoa Cấp cứu",
+        "TEN_DICHVU": "Xét nghiệm máu",
+        "SOLUONG": 1,
+        "THANHTIEN": 137759.0
+      },
+      {
+        "ID": 11743,
+        "NGAY": "2023-03-09",
+        "ID_BENHNHAN": "BN00338",
+        "TEN_KHOAPHONG": "Khoa Ngoại",
+        "TEN_DICHVU": "Xét nghiệm máu",
+        "SOLUONG": 1,
+        "THANHTIEN": 108396.0
+      },
+      {
+        "ID": 11782,
+        "NGAY": "2023-03-09",
+        "ID_BENHNHAN": "BN00338",
+        "TEN_KHOAPHONG": "Khoa Ngoại",
+        "TEN_DICHVU": "Xét nghiệm máu",
+        "SOLUONG": 3,
+        "THANHTIEN": 347756.0
+      },
+      {
+        "ID": 12747,
+        "NGAY": "2023-03-24",
+        "ID_BENHNHAN": "BN00378",
+        "TEN_KHOAPHONG": "Khoa Ngoại",
+        "TEN_DICHVU": "Thuốc điều trị",
+        "SOLUONG": 3,
+        "THANHTIEN": 851127.0
+      },
+      {
+        "ID": 12750,
+        "NGAY": "2023-03-24",
+        "ID_BENHNHAN": "BN00378",
+        "TEN_KHOAPHONG": "Khoa Ngoại",
+        "TEN_DICHVU": "Thuốc điều trị",
+        "SOLUONG": 3,
+        "THANHTIEN": 976835.0
+      },
+      {
+        "ID": 13331,
+        "NGAY": "2023-04-02",
+        "ID_BENHNHAN": "BN00160",
+        "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
+        "TEN_DICHVU": "X-quang",
+        "SOLUONG": 1,
+        "THANHTIEN": 163237.0
+      },
+      {
+        "ID": 13391,
+        "NGAY": "2023-04-02",
+        "ID_BENHNHAN": "BN00160",
+        "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
+        "TEN_DICHVU": "X-quang",
+        "SOLUONG": 1,
+        "THANHTIEN": 180683.0
+      },
+      {
+        "ID": 18002,
+        "NGAY": "2023-06-15",
+        "ID_BENHNHAN": "BN00268",
+        "TEN_KHOAPHONG": "Khoa Nhi",
+        "TEN_DICHVU": "Khám cấp cứu",
+        "SOLUONG": 2,
+        "THANHTIEN": 450277.0
+      },
+      {
+        "ID": 18007,
+        "NGAY": "2023-06-15",
+        "ID_BENHNHAN": "BN00268",
+        "TEN_KHOAPHONG": "Khoa Nhi",
+        "TEN_DICHVU": "Khám cấp cứu",
+        "SOLUONG": 2,
+        "THANHTIEN": 571625.0
+      },
       {
         "ID": 118,
         "NGAY": "2026-01-03",
@@ -333,8 +515,8 @@
   "validation": [
     {
       "check": "Doanh thu âm",
-      "count": 0,
-      "pct": 0.0
+      "count": 1,
+      "pct": 0.01
     },
     {
       "check": "Doanh thu bằng 0",
@@ -353,8 +535,8 @@
     },
     {
       "check": "BHYT trả > Thành tiền",
-      "count": 0,
-      "pct": 0.0
+      "count": 1,
+      "pct": 0.01
     },
     {
       "check": "Khoa không map được",
@@ -373,7 +555,9 @@
     }
   ],
   "recommendations": [
-    "Phát hiện 1,153 giao dịch bất thường — xác nhận với bộ phận viện phí.",
-    "Có 3 bản ghi có khả năng trùng lặp — rà soát để tránh tính phí 2 lần."
+    "Có 3 giá trị thiếu cần điền bổ sung hoặc kiểm tra quy trình nhập liệu.",
+    "Phát hiện 3,121 giao dịch bất thường — xác nhận với bộ phận viện phí.",
+    "Có 10 bản ghi có khả năng trùng lặp — rà soát để tránh tính phí 2 lần.",
+    "Có 2 bản ghi vi phạm quy tắc validation cần sửa."
   ]
 }

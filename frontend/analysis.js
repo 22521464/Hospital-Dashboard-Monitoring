@@ -325,7 +325,7 @@ async function loadTrend() {
             labels: decomp.dates,
             datasets: [
                 {
-                    label: "Trend",
+                    label: "Xu hướng",
                     data: decomp.trend,
                     borderColor: "#1976d2",
                     backgroundColor: "rgba(25, 118, 210, 0.08)",
@@ -335,7 +335,7 @@ async function loadTrend() {
                     tension: 0.4,
                 },
                 {
-                    label: "Seasonal",
+                    label: "Mùa vụ",
                     data: decomp.seasonal,
                     borderColor: "#26a69a",
                     backgroundColor: "transparent",
@@ -344,7 +344,7 @@ async function loadTrend() {
                     tension: 0.3,
                 },
                 {
-                    label: "Residual",
+                    label: "Nhiễu",
                     data: decomp.residual,
                     borderColor: "#8e24aa",
                     backgroundColor: "transparent",

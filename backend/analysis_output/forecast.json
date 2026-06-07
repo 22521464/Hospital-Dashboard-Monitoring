@@ -1,201 +1,197 @@
 {
-  "generated_at": "2026-05-24T03:10:48.159078",
+  "generated_at": "2026-06-07T14:04:56.299694",
   "model": "Holt-Winters (trend + seasonal 7 ngày)",
   "forecast_days": 30,
-  "last_actual_date": "2026-05-10",
+  "last_actual_date": "2026-05-11",
   "monthly_forecast": {
-    "predicted_total": 6809894795,
-    "lower_95": 45476117,
-    "upper_95": 23710692294,
-    "growth_vs_last_30d": 50.0
+    "predicted_total": 6623535850,
+    "lower_95": 384154019,
+    "upper_95": 15269823646,
+    "growth_vs_last_30d": 37.71
   },
   "daily_forecast": [
     {
-      "date": "2026-05-11",
-      "predicted": 196264558,
-      "lower": 45476117,
-      "upper": 347052999
-    },
-    {
       "date": "2026-05-12",
-      "predicted": 178642084,
-      "lower": 0,
-      "upper": 391889143
+      "predicted": 195111176,
+      "lower": 117969239,
+      "upper": 272253114
     },
     {
       "date": "2026-05-13",
-      "predicted": 199984078,
-      "lower": 0,
-      "upper": 461157319
+      "predicted": 202040442,
+      "lower": 92945268,
+      "upper": 311135615
     },
     {
       "date": "2026-05-14",
-      "predicted": 203151889,
-      "lower": 0,
-      "upper": 504728771
+      "predicted": 210653758,
+      "lower": 77040004,
+      "upper": 344267513
     },
     {
       "date": "2026-05-15",
-      "predicted": 174183891,
-      "lower": 0,
-      "upper": 511357095
+      "predicted": 185855248,
+      "lower": 31571374,
+      "upper": 340139122
     },
     {
       "date": "2026-05-16",
-      "predicted": 181408946,
-      "lower": 0,
-      "upper": 550763685
+      "predicted": 197482756,
+      "lower": 24988141,
+      "upper": 369977371
     },
     {
       "date": "2026-05-17",
-      "predicted": 221958121,
-      "lower": 0,
-      "upper": 620906837
+      "predicted": 222733574,
+      "lower": 33775190,
+      "upper": 411691958
     },
     {
       "date": "2026-05-18",
-      "predicted": 216516836,
-      "lower": 0,
-      "upper": 643010953
+      "predicted": 209963184,
+      "lower": 5864803,
+      "upper": 414061565
     },
     {
       "date": "2026-05-19",
-      "predicted": 198894362,
+      "predicted": 205731650,
       "lower": 0,
-      "upper": 651259685
+      "upper": 423921997
     },
     {
       "date": "2026-05-20",
-      "predicted": 220236356,
+      "predicted": 212660915,
       "lower": 0,
-      "upper": 697071274
+      "upper": 444086726
     },
     {
       "date": "2026-05-21",
-      "predicted": 223404167,
+      "predicted": 221274232,
       "lower": 0,
-      "upper": 723512849
+      "upper": 465218456
     },
     {
       "date": "2026-05-22",
-      "predicted": 194436168,
+      "predicted": 196475721,
       "lower": 0,
-      "upper": 716782651
+      "upper": 452326582
     },
     {
       "date": "2026-05-23",
-      "predicted": 201661223,
+      "predicted": 208103229,
       "lower": 0,
-      "upper": 745336679
+      "upper": 475330738
     },
     {
       "date": "2026-05-24",
-      "predicted": 242210399,
+      "predicted": 233354048,
       "lower": 0,
-      "upper": 806409083
+      "upper": 511493257
     },
     {
       "date": "2026-05-25",
-      "predicted": 236769113,
+      "predicted": 220583658,
       "lower": 0,
-      "upper": 820770234
+      "upper": 509222357
     },
     {
       "date": "2026-05-26",
-      "predicted": 219146639,
+      "predicted": 216352124,
       "lower": 0,
-      "upper": 822300404
+      "upper": 515121561
     },
     {
       "date": "2026-05-27",
-      "predicted": 240488634,
+      "predicted": 223281389,
       "lower": 0,
-      "upper": 862205303
+      "upper": 531849137
     },
     {
       "date": "2026-05-28",
-      "predicted": 243656445,
+      "predicted": 231894705,
       "lower": 0,
-      "upper": 883397620
+      "upper": 549959060
     },
     {
       "date": "2026-05-29",
-      "predicted": 214688446,
+      "predicted": 207096195,
       "lower": 0,
-      "upper": 871960023
+      "upper": 534381716
     },
     {
       "date": "2026-05-30",
-      "predicted": 221913501,
+      "predicted": 218723703,
       "lower": 0,
-      "upper": 896259910
+      "upper": 554977611
     },
     {
       "date": "2026-05-31",
-      "predicted": 262462677,
+      "predicted": 243974521,
       "lower": 0,
-      "upper": 953462122
+      "upper": 588963752
     },
     {
       "date": "2026-06-01",
-      "predicted": 257021391,
+      "predicted": 231204131,
       "lower": 0,
-      "upper": 964281871
+      "upper": 584712897
     },
     {
       "date": "2026-06-02",
-      "predicted": 239398917,
+      "predicted": 226972597,
       "lower": 0,
-      "upper": 962554876
+      "upper": 588800355
     },
     {
       "date": "2026-06-03",
-      "predicted": 260740911,
+      "predicted": 233901862,
       "lower": 0,
-      "upper": 999450391
+      "upper": 603861596
     },
     {
       "date": "2026-06-04",
-      "predicted": 263908722,
+      "predicted": 242515179,
       "lower": 0,
-      "upper": 1017850928
+      "upper": 620431946
     },
     {
       "date": "2026-06-05",
-      "predicted": 234940724,
+      "predicted": 217716669,
       "lower": 0,
-      "upper": 1003813927
+      "upper": 603426354
     },
     {
       "date": "2026-06-06",
-      "predicted": 242165779,
+      "predicted": 229344177,
       "lower": 0,
-      "upper": 1025685502
+      "upper": 622692419
     },
     {
       "date": "2026-06-07",
-      "predicted": 282714954,
+      "predicted": 254594995,
       "lower": 0,
-      "upper": 1080612385
+      "upper": 655436258
     },
     {
       "date": "2026-06-08",
-      "predicted": 277273669,
+      "predicted": 241824605,
       "lower": 0,
-      "upper": 1089294275
+      "upper": 650021367
     },
     {
       "date": "2026-06-09",
-      "predicted": 259651195,
+      "predicted": 237593071,
       "lower": 0,
-      "upper": 1085553500
+      "upper": 653015116
+    },
+    {
+      "date": "2026-06-10",
+      "predicted": 244522336,
+      "lower": 0,
+      "upper": 667046127
     }
   ],
   "historical_last_60d": [
-    {
-      "date": "2026-03-12",
-      "actual": 105215995
-    },
     {
       "date": "2026-03-13",
       "actual": 187672217
@@ -431,152 +427,156 @@
     {
       "date": "2026-05-10",
       "actual": 250206430
+    },
+    {
+      "date": "2026-05-11",
+      "actual": 295993797
     }
   ],
   "scenarios": [
     {
       "label": "-20%",
       "change_percent": -20,
-      "monthly_total": 5447915836,
-      "vs_last_30d": 20.0
+      "monthly_total": 5298828680,
+      "vs_last_30d": 10.16
     },
     {
       "label": "-10%",
       "change_percent": -10,
-      "monthly_total": 6128905316,
-      "vs_last_30d": 35.0
+      "monthly_total": 5961182265,
+      "vs_last_30d": 23.93
     },
     {
       "label": "-5%",
       "change_percent": -5,
-      "monthly_total": 6469400055,
-      "vs_last_30d": 42.5
+      "monthly_total": 6292359058,
+      "vs_last_30d": 30.82
     },
     {
       "label": "Base",
       "change_percent": 0,
-      "monthly_total": 6809894795,
-      "vs_last_30d": 50.0
+      "monthly_total": 6623535850,
+      "vs_last_30d": 37.71
     },
     {
       "label": "+5%",
       "change_percent": 5,
-      "monthly_total": 7150389535,
-      "vs_last_30d": 57.5
+      "monthly_total": 6954712643,
+      "vs_last_30d": 44.59
     },
     {
       "label": "+10%",
       "change_percent": 10,
-      "monthly_total": 7490884275,
-      "vs_last_30d": 65.0
+      "monthly_total": 7285889435,
+      "vs_last_30d": 51.48
     },
     {
       "label": "+20%",
       "change_percent": 20,
-      "monthly_total": 8171873754,
-      "vs_last_30d": 80.0
+      "monthly_total": 7948243020,
+      "vs_last_30d": 65.25
     }
   ],
   "by_department": [
     {
       "TEN_KHOAPHONG": "Khoa Chẩn đoán hình ảnh",
-      "last_30d": 331323722.0,
+      "last_30d": 335828361.0,
       "weight": 0.0,
-      "forecast_base": 496982240.0,
-      "forecast_plus10": 546680464.0,
-      "forecast_plus20": 596378688.0,
-      "impact_plus10": 49698224.0,
-      "impact_plus20": 99396448.0
+      "forecast_base": 462453909.0,
+      "forecast_plus10": 508699300.0,
+      "forecast_plus20": 554944691.0,
+      "impact_plus10": 46245391.0,
+      "impact_plus20": 92490782.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Cấp cứu",
-      "last_30d": 439579651.0,
+      "last_30d": 442396541.0,
       "weight": 0.0,
-      "forecast_base": 659365041.0,
-      "forecast_plus10": 725301545.0,
-      "forecast_plus20": 791238049.0,
-      "impact_plus10": 65936504.0,
-      "impact_plus20": 131873008.0
+      "forecast_base": 609204086.0,
+      "forecast_plus10": 670124495.0,
+      "forecast_plus20": 731044903.0,
+      "impact_plus10": 60920409.0,
+      "impact_plus20": 121840817.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Dược",
-      "last_30d": 510164033.0,
+      "last_30d": 518858081.0,
       "weight": 0.0,
-      "forecast_base": 765240902.0,
-      "forecast_plus10": 841764992.0,
-      "forecast_plus20": 918289082.0,
-      "impact_plus10": 76524090.0,
-      "impact_plus20": 153048180.0
+      "forecast_base": 714495783.0,
+      "forecast_plus10": 785945361.0,
+      "forecast_plus20": 857394940.0,
+      "impact_plus10": 71449578.0,
+      "impact_plus20": 142899157.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Hồi sức tích cực",
-      "last_30d": 540151284.0,
+      "last_30d": 605568578.0,
       "weight": 0.0,
-      "forecast_base": 810221476.0,
-      "forecast_plus10": 891243624.0,
-      "forecast_plus20": 972265771.0,
-      "impact_plus10": 81022148.0,
-      "impact_plus20": 162044295.0
+      "forecast_base": 833900851.0,
+      "forecast_plus10": 917290936.0,
+      "forecast_plus20": 1000681021.0,
+      "impact_plus10": 83390085.0,
+      "impact_plus20": 166780170.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Khám bệnh",
-      "last_30d": 471870626.0,
+      "last_30d": 499063950.0,
       "weight": 0.0,
-      "forecast_base": 707801178.0,
-      "forecast_plus10": 778581296.0,
-      "forecast_plus20": 849361414.0,
-      "impact_plus10": 70780118.0,
-      "impact_plus20": 141560236.0
+      "forecast_base": 687238188.0,
+      "forecast_plus10": 755962007.0,
+      "forecast_plus20": 824685826.0,
+      "impact_plus10": 68723819.0,
+      "impact_plus20": 137447638.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Ngoại",
-      "last_30d": 526653921.0,
+      "last_30d": 552222536.0,
       "weight": 0.0,
-      "forecast_base": 789975567.0,
-      "forecast_plus10": 868973124.0,
-      "forecast_plus20": 947970680.0,
-      "impact_plus10": 78997557.0,
-      "impact_plus20": 157995113.0
+      "forecast_base": 760440451.0,
+      "forecast_plus10": 836484496.0,
+      "forecast_plus20": 912528541.0,
+      "impact_plus10": 76044045.0,
+      "impact_plus20": 152088090.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Nhi",
-      "last_30d": 478972810.0,
+      "last_30d": 531600469.0,
       "weight": 0.0,
-      "forecast_base": 718454382.0,
-      "forecast_plus10": 790299820.0,
-      "forecast_plus20": 862145258.0,
-      "impact_plus10": 71845438.0,
-      "impact_plus20": 143690876.0
+      "forecast_base": 732042744.0,
+      "forecast_plus10": 805247018.0,
+      "forecast_plus20": 878451293.0,
+      "impact_plus10": 73204274.0,
+      "impact_plus20": 146408549.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Nội tổng hợp",
-      "last_30d": 370586867.0,
+      "last_30d": 405117485.0,
       "weight": 0.0,
-      "forecast_base": 555876561.0,
-      "forecast_plus10": 611464217.0,
-      "forecast_plus20": 667051873.0,
-      "impact_plus10": 55587656.0,
-      "impact_plus20": 111175312.0
+      "forecast_base": 557868799.0,
+      "forecast_plus10": 613655679.0,
+      "forecast_plus20": 669442559.0,
+      "impact_plus10": 55786880.0,
+      "impact_plus20": 111573760.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Sản",
-      "last_30d": 496411117.0,
+      "last_30d": 544657696.0,
       "weight": 0.0,
-      "forecast_base": 744611667.0,
-      "forecast_plus10": 819072834.0,
-      "forecast_plus20": 893534000.0,
-      "impact_plus10": 74461167.0,
-      "impact_plus20": 148922333.0
+      "forecast_base": 750023255.0,
+      "forecast_plus10": 825025581.0,
+      "forecast_plus20": 900027906.0,
+      "impact_plus10": 75002326.0,
+      "impact_plus20": 150004651.0
     },
     {
       "TEN_KHOAPHONG": "Khoa Xét nghiệm",
-      "last_30d": 374246372.0,
+      "last_30d": 374616864.0,
       "weight": 0.0,
-      "forecast_base": 561365782.0,
-      "forecast_plus10": 617502360.0,
-      "forecast_plus20": 673638938.0,
-      "impact_plus10": 56136578.0,
-      "impact_plus20": 112273156.0
+      "forecast_base": 515867786.0,
+      "forecast_plus10": 567454565.0,
+      "forecast_plus20": 619041343.0,
+      "impact_plus10": 51586779.0,
+      "impact_plus20": 103173557.0
     }
   ]
 }

@@ -14,13 +14,13 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>Hospital Monitor</h2>
-                <p>Statistical Analysis</p>
+                <h2>Giám sát Bệnh viện</h2>
+                <p>Phân tích Thống kê</p>
             </div>
 
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="/">Dashboard</a></li>
+                    <li><a href="/">Tổng quan</a></li>
                     <li><a href="/data-entry">Nhập viện phí</a></li>
                     <li class="active"><a href="/analysis">Phân tích</a></li>
                     <li><a href="/report">Báo cáo</a></li>
@@ -30,8 +30,8 @@
 
             <div class="sidebar-footer">
                 <div class="admin-info">
-                    <p><strong>Administrator</strong></p>
-                    <p>Localhost Demo</p>
+                    <p><strong>Quản trị viên</strong></p>
+                    <p>Demo nội bộ</p>
                 </div>
             </div>
         </aside>
@@ -39,7 +39,7 @@
         <main class="main-content">
             <header class="main-header">
                 <div>
-                    <h1>Statistical Analysis</h1>
+                    <h1>Phân tích Thống kê</h1>
                     <p id="analysisStatusText">Đang kiểm tra dữ liệu phân tích...</p>
                 </div>
             </header>
@@ -54,7 +54,7 @@
 
             <!-- ── Section: Forecast ── -->
             <section class="analysis-section">
-                <h2 class="section-title">Forecasting Model</h2>
+                <h2 class="section-title">Mô hình Dự báo</h2>
 
                 <div class="kpi-grid">
                     <div class="kpi-card">
@@ -75,7 +75,7 @@
                     <div class="kpi-card">
                         <h4>Model sử dụng</h4>
                         <div id="fcModel" class="kpi-value" style="font-size:14px;line-height:1.4;">--</div>
-                        <div class="kpi-subtext">Forecasting algorithm</div>
+                        <div class="kpi-subtext">Thuật toán dự báo</div>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
                         <canvas id="fcForecastChart"></canvas>
                     </div>
                     <div class="chart-card chart-wide">
-                        <h3>Scenario Analysis — Kịch bản tăng/giảm doanh thu</h3>
+                        <h3>Phân tích Kịch bản — Tăng/giảm doanh thu</h3>
                         <p class="chart-description">Dự báo tổng 30 ngày tới nếu doanh thu thực tế thay đổi theo các kịch bản.</p>
                         <canvas id="fcScenarioChart"></canvas>
                     </div>
@@ -115,7 +115,7 @@
                                 <thead>
                                     <tr>
                                         <th>Khoa/phòng</th>
-                                        <th>Base forecast</th>
+                                        <th>Dự báo cơ sở</th>
                                         <th>Tăng thêm (+10%)</th>
                                     </tr>
                                 </thead>
@@ -128,23 +128,23 @@
 
             <!-- ── Section 2: Descriptive Stats ── -->
             <section class="analysis-section">
-                <h2 class="section-title">Descriptive Statistics</h2>
+                <h2 class="section-title">Thống kê Mô tả</h2>
 
                 <div class="kpi-grid" id="descKpiGrid">
                     <div class="kpi-card">
                         <h4>Doanh thu trung bình / giao dịch</h4>
                         <div id="descMean" class="kpi-value">--</div>
-                        <div class="kpi-subtext">Mean</div>
+                        <div class="kpi-subtext">Trung bình cộng</div>
                     </div>
                     <div class="kpi-card">
                         <h4>Trung vị / giao dịch</h4>
                         <div id="descMedian" class="kpi-value">--</div>
-                        <div class="kpi-subtext">Median</div>
+                        <div class="kpi-subtext">Trung vị</div>
                     </div>
                     <div class="kpi-card">
                         <h4>Độ lệch chuẩn</h4>
                         <div id="descStd" class="kpi-value">--</div>
-                        <div class="kpi-subtext">Std deviation</div>
+                        <div class="kpi-subtext">Độ lệch chuẩn</div>
                     </div>
                     <div class="kpi-card">
                         <h4>Tỷ lệ BHYT chi trả</h4>
@@ -154,12 +154,12 @@
                     <div class="kpi-card">
                         <h4>Doanh thu / bệnh nhân</h4>
                         <div id="descRevPerPatient" class="kpi-value">--</div>
-                        <div class="kpi-subtext">Revenue per patient</div>
+                        <div class="kpi-subtext">Doanh thu/bệnh nhân</div>
                     </div>
                     <div class="kpi-card">
                         <h4>Doanh thu / lượt khám</h4>
                         <div id="descRevPerVisit" class="kpi-value">--</div>
-                        <div class="kpi-subtext">Revenue per visit</div>
+                        <div class="kpi-subtext">Doanh thu/lượt khám</div>
                     </div>
                 </div>
 
@@ -186,7 +186,7 @@
 
             <!-- ── Section 3: Correlation ── -->
             <section class="analysis-section">
-                <h2 class="section-title">Correlation Analysis</h2>
+                <h2 class="section-title">Phân tích Tương quan</h2>
 
                 <div class="charts-grid">
                     <div class="chart-card chart-wide">
@@ -224,7 +224,7 @@
 
             <!-- ── Section 4: Trend ── -->
             <section class="analysis-section">
-                <h2 class="section-title">Trend Analysis</h2>
+                <h2 class="section-title">Phân tích Xu hướng</h2>
 
                 <div class="charts-grid">
                     <div class="chart-card chart-wide">
@@ -232,7 +232,7 @@
                         <canvas id="trendMonthlyChart"></canvas>
                     </div>
                     <div class="chart-card chart-wide" id="trendDecompCard">
-                        <h3>STL Decomposition — Xu hướng dài hạn</h3>
+                        <h3>Phân rã STL — Xu hướng dài hạn</h3>
                         <p class="chart-description">Tách doanh thu thành: Trend (xu hướng) + Seasonal (mùa vụ 7 ngày) + Residual (nhiễu).</p>
                         <canvas id="trendDecompChart"></canvas>
                     </div>

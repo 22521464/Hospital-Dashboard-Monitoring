@@ -14,12 +14,12 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>Hospital Monitor</h2>
-                <p>Data Quality</p>
+                <h2>Giám sát Bệnh viện</h2>
+                <p>Chất lượng Dữ liệu</p>
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="/">Dashboard</a></li>
+                    <li><a href="/">Tổng quan</a></li>
                     <li><a href="/data-entry">Nhập viện phí</a></li>
                     <li><a href="/analysis">Phân tích</a></li>
                     <li><a href="/report">Báo cáo</a></li>
@@ -28,8 +28,8 @@
             </nav>
             <div class="sidebar-footer">
                 <div class="admin-info">
-                    <p><strong>Administrator</strong></p>
-                    <p>Localhost Demo</p>
+                    <p><strong>Quản trị viên</strong></p>
+                    <p>Demo nội bộ</p>
                 </div>
             </div>
         </aside>
@@ -37,7 +37,7 @@
         <main class="main-content">
             <header class="main-header">
                 <div>
-                    <h1>Data Quality Report</h1>
+                    <h1>Báo cáo Chất lượng Dữ liệu</h1>
                     <p id="dqTimestamp">Đang tải...</p>
                 </div>
             </header>
@@ -50,34 +50,34 @@
             <!-- KPI -->
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <h4>Quality Score</h4>
+                    <h4>Điểm Chất lượng</h4>
                     <div id="dqScore" class="kpi-value">--</div>
                     <div class="kpi-subtext">Điểm chất lượng tổng hợp / 100</div>
                 </div>
                 <div class="kpi-card">
-                    <h4>Missing Values</h4>
+                    <h4>Giá trị Thiếu</h4>
                     <div id="dqMissingTotal" class="kpi-value">--</div>
                     <div class="kpi-subtext">Tổng giá trị thiếu</div>
                 </div>
                 <div class="kpi-card">
-                    <h4>Outliers</h4>
+                    <h4>Giá trị Ngoại lệ</h4>
                     <div id="dqOutlierTotal" class="kpi-value">--</div>
                     <div class="kpi-subtext">Giao dịch bất thường (IQR + Z-score)</div>
                 </div>
                 <div class="kpi-card">
-                    <h4>Duplicates</h4>
+                    <h4>Bản ghi Trùng lặp</h4>
                     <div id="dqDupTotal" class="kpi-value">--</div>
                     <div class="kpi-subtext">Bản ghi có khả năng trùng lặp</div>
                 </div>
                 <div class="kpi-card">
-                    <h4>Validation Errors</h4>
+                    <h4>Lỗi Kiểm định</h4>
                     <div id="dqInvalidTotal" class="kpi-value">--</div>
                     <div class="kpi-subtext">Vi phạm quy tắc kiểm tra</div>
                 </div>
                 <div class="kpi-card">
                     <h4>Tổng bản ghi</h4>
                     <div id="dqTotalRecords" class="kpi-value">--</div>
-                    <div class="kpi-subtext">Records phân tích</div>
+                    <div class="kpi-subtext">Bản ghi phân tích</div>
                 </div>
             </div>
 
@@ -91,7 +91,7 @@
 
             <!-- Missing Values -->
             <section class="analysis-section">
-                <h2 class="section-title">Missing Values</h2>
+                <h2 class="section-title">Giá trị Thiếu</h2>
                 <div class="charts-grid">
                     <div class="chart-card">
                         <h3>Tỷ lệ missing theo cột</h3>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="panel-card" style="margin-bottom:24px;">
-                    <h3>Chi tiết missing values</h3>
+                    <h3>Chi tiết giá trị thiếu</h3>
                     <div class="table-wrapper">
                         <table id="dqMissingTable">
                             <thead><tr><th>Cột</th><th>Số thiếu</th><th>Tỷ lệ</th><th>Trạng thái</th></tr></thead>
@@ -115,7 +115,7 @@
 
             <!-- Outliers -->
             <section class="analysis-section">
-                <h2 class="section-title">Outlier Detection</h2>
+                <h2 class="section-title">Phát hiện Ngoại lệ</h2>
                 <div class="panel-card" style="margin-bottom:24px;">
                     <h3>Top 20 giao dịch bất thường</h3>
                     <p class="chart-description" id="dqOutlierDesc"></p>
@@ -130,7 +130,7 @@
 
             <!-- Duplicates -->
             <section class="analysis-section">
-                <h2 class="section-title">Duplicate Detection</h2>
+                <h2 class="section-title">Phát hiện Trùng lặp</h2>
                 <div class="panel-card" style="margin-bottom:24px;">
                     <h3>Bản ghi có khả năng trùng lặp</h3>
                     <p class="chart-description">Cùng bệnh nhân + khoa + dịch vụ + ngày.</p>
@@ -145,7 +145,7 @@
 
             <!-- Validation -->
             <section class="analysis-section">
-                <h2 class="section-title">Data Validation</h2>
+                <h2 class="section-title">Kiểm định Dữ liệu</h2>
                 <div class="panel-card">
                     <h3>Kết quả kiểm tra quy tắc</h3>
                     <div class="table-wrapper">
