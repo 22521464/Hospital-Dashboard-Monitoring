@@ -12,9 +12,9 @@ function setText(id, value) {
 }
 
 function levelMeta(level) {
-    if (level === "positive") return { icon: "✅", label: "Tích cực",    cls: "finding-positive" };
-    if (level === "warning")  return { icon: "⚠️", label: "Cần chú ý",  cls: "finding-warning"  };
-    return                           { icon: "ℹ️", label: "Thông tin",  cls: "finding-info"     };
+    if (level === "positive") return { icon: "", label: "Tích cực",    cls: "finding-positive" };
+    if (level === "warning")  return { icon: "", label: "Cần chú ý",  cls: "finding-warning"  };
+    return                           { icon: "", label: "Thông tin",  cls: "finding-info"     };
 }
 
 async function loadReport() {

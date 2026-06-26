@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07T14:06:57.046336",
+  "generated_at": "2026-06-23T01:57:29.855193",
   "executive_summary": "Phân tích 20,000 giao dịch với tổng doanh thu 44,972,052,738 VNĐ từ 1,044 bệnh nhân. Dự báo 30 ngày tới tăng trưởng 37.7%. Tổng hợp 7 phát hiện: 2 tích cực, 2 cần theo dõi, 3 thông tin.",
   "total_findings": 7,
   "n_positive": 2,
@@ -64,9 +64,9 @@
     }
   ],
   "data_sources": {
-    "descriptive_stats": "2026-06-07T14:03:29.473010",
-    "correlation_matrix": "2026-06-07T14:03:29.473010",
-    "trend_analysis": "2026-06-07T14:03:29.473010",
-    "forecast": "2026-06-07T14:04:56.299694"
+    "descriptive_stats": "2026-06-23T01:56:51.580909",
+    "correlation_matrix": "2026-06-23T01:56:51.580909",
+    "trend_analysis": "2026-06-23T01:56:51.580909",
+    "forecast": "2026-06-23T01:57:16.703749"
   }
 }

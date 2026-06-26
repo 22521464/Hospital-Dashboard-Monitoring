@@ -20,9 +20,9 @@ function destroyChart(key) {
 }
 
 function statusBadge(count) {
-    if (count === 0) return '<span class="badge badge-positive">✅ Tốt</span>';
-    if (count < 10)  return '<span class="badge badge-warning">⚠️ Cần xem</span>';
-    return '<span class="badge badge-warning" style="background:#ffebee;color:#c62828;">❌ Cần sửa</span>';
+    if (count === 0) return '<span class="badge badge-positive">Tốt</span>';
+    if (count < 10)  return '<span class="badge badge-warning">Cần xem</span>';
+    return '<span class="badge badge-warning" style="background:#ffebee;color:#c62828;">Cần sửa</span>';
 }
 
 async function loadDataQuality() {
@@ -135,7 +135,7 @@ async function loadDataQuality() {
                         <td style="color:#c62828;font-weight:600">${formatVND(r.THANHTIEN)}</td>
                         <td>${typeof r.ZSCORE === "number" ? r.ZSCORE.toFixed(2) : "—"}</td>
                     </tr>`).join("")
-                : `<tr><td colspan="7">✅ Không phát hiện outlier.</td></tr>`;
+                : `<tr><td colspan="7">Không phát hiện outlier.</td></tr>`;
         }
 
         // ── Duplicates ───────────────────────────────────────────────
@@ -154,7 +154,7 @@ async function loadDataQuality() {
                         <td>${r.SOLUONG}</td>
                         <td>${formatVND(r.THANHTIEN)}</td>
                     </tr>`).join("")
-                : `<tr><td colspan="7">✅ Không phát hiện bản ghi trùng lặp.</td></tr>`;
+                : `<tr><td colspan="7">Không phát hiện bản ghi trùng lặp.</td></tr>`;
         }
 
         // ── Validation table ─────────────────────────────────────────
